@@ -36,7 +36,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     val ny = floor(size / dy)
     var iy = -ny
     val dx = dxTimesTwo / 2
-    val points = ArrayBuffer()
+    val points: ArrayBuffer[Complex] = ArrayBuffer()
     while (iy <= ny) {
       val isEven = iy % 2 == 0
       val y = iy * dy
@@ -52,7 +52,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       }
       iy += 1
     }
-    points
+    points.toArray
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
