@@ -22,7 +22,7 @@ class Complex(val x: Double, val y: Double) {
 class Grid(val size: Double, nxOverTwo: Int) {
   def getSize: Double = size
   def getNx: Int = nxOverTwo * 2
-  def getScale: Double = size
+  def getScale: Double = size / nxOverTwo.toDouble
   def build(): Array[Complex] = {
     val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
