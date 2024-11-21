@@ -3,11 +3,11 @@
 @main {
   <p>Results for path: @path</p>
   <svg
-    width=(2.0 * @size).toString
-    height=(2.0 * @size).toString
+    width=@(2.0 * size)
+    height=@(2.0 * size)  
   >
     @for(point <- points) {
-      <circle cx=(@point.getX + @size).toString cy=(@point.getY + @size).toString r="10" />
+      <circle cx=@(point.getX + size) cy=@(point.getY + size) r="10" />
     }
   </svg>
 }
