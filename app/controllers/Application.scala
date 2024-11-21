@@ -41,7 +41,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       val isEven = iy % 2 == 0
       val y = iy * dy
       var nx = floor(sqrt(size * size - y * y) / dx)
-      if ((ix % 2 == 0) != isEven) {
+      if ((nx % 2 == 0) != isEven) {
         nx -= 1
       }
       var ix = -nx
