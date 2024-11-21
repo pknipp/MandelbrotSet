@@ -1,13 +1,13 @@
-@(path: String, size: Double, points: Seq[Complex])
+@(path: String, grid: Grid)
 
 @main {
   <p>Results for path: @path</p>
   <svg
-    width=@(2.0 * size)
-    height=@(2.0 * size)  
+    width=@(2.0 * grid.size)
+    height=@(2.0 * grid.size)
   >
-    @for(point <- points) {
-      <circle cx=@(point.getX + size) cy=@(point.getY + size) r="10" />
+    @for(point <- grid.build()) {
+      <circle cx=@(point.getX + grid.size) cy=@(point.getY + grid.size) r="10" />
     }
   </svg>
 }
