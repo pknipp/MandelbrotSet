@@ -1,10 +1,10 @@
-@(path: String, grid: Grid)
+@(path: String, totalSize: Float, grid: Sec[Complex])
 
 @main {
   <p>Results for path: @path</p>
   <svg
-    width=(@grid.size * 2)
-    height=(@grid.size * 2)
+    width=(@totalSize)
+    height=(@totalSize)
   >
   </svg>
 }
