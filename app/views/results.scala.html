@@ -7,7 +7,12 @@
     height=@(2.0 * grid.size)
   >
     @for(point <- grid.build()) {
-      <circle cx=@(point.getX + grid.size) cy=@(point.getY + grid.size) r="10" />
+      <g
+        transform=s"translate(@(point.getX), @(point.getY))"
+      >
+        <circle r="10"/>
+      </g>
+      <!-- <circle cx=@(point.getX + grid.size) cy=@(point.getY + grid.size) r="10" /> -->
     }
   </svg>
 }
