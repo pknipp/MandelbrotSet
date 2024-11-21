@@ -23,16 +23,16 @@ class Grid(val size: Double, nxOverTwo: Int) {
   def getSize: Double = size
   def getNx: Int = nxOverTwo * 2
   def build(): Array[Complex] = {
-    val dxTimesTwo = size / nxOverTwo
+    val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
-    val ny = floor(size / dy)
+    val ny = floor(2.0 / dy)
     var iy = -ny
     val dx = dxTimesTwo / 2
     val points: ArrayBuffer[Complex] = ArrayBuffer()
     while (iy <= ny) {
       val isEven = iy % 2 == 0
       val y = iy * dy
-      var nx = floor(sqrt(size * size - y * y) / dx)
+      var nx = floor(sqrt(4.0 - y * y) / dx)
       if ((nx % 2 == 0) != isEven) {
         nx -= 1
       }
