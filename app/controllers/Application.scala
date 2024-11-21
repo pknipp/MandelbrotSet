@@ -5,6 +5,18 @@ import play.api._
 import play.api.db.Database
 import play.api.mvc._
 
+class Complex(val x: Float, val y: Float) {
+  def getX: Float = x
+  def getY: Float = y
+  def mul(second: Complex): Complex = {
+    xb = second.getX
+    yb = second.getY
+    xc = x * xb - y * yb
+    yc = x * yb + y * xb
+    new Complex(xc, yc)
+  }
+}
+
 @Singleton
 class Application @Inject()(val controllerComponents: ControllerComponents, val database: Database) extends BaseController {
 
