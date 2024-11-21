@@ -12,7 +12,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def rerults(path: String) = Action {
+  def results(path: String) = Action {
     Ok(views.html.results(path))
   }
 
