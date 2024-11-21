@@ -7,9 +7,9 @@ import play.api.mvc._
 import scala.math._
 import scala.collection.mutable.ArrayBuffer
 
-class Complex(val x: Float, val y: Float) {
-  def getX: Float = x
-  def getY: Float = y
+class Complex(val x: Double, val y: Double) {
+  def getX: Double = x
+  def getY: Double = y
   def mul(second: Complex): Complex = {
     val xb = second.getX
     val yb = second.getY
@@ -30,7 +30,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.results(path))
   }
 
-  def grid(size: Float, nxOverTwo: Int): Array[Complex] = {
+  def grid(size: Double, nxOverTwo: Int): Array[Complex] = {
     val dxTimesTwo = size / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
     val ny = floor(size / dy)
@@ -42,7 +42,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       val y = iy * dy
       var nx = floor(sqrt(size * size - y * y) / dx)
       if ((ix % 2 == 0) != isEven) {
-        nx--
+        nx =- 1
       }
       var ix = -nx
       while (ix <= nx) {
@@ -50,7 +50,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         points += new Complex(x, y)
         ix += 2
       }
-      iy++
+      iy += 1
     }
     points
   }
