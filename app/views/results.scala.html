@@ -8,7 +8,7 @@
   >
     @for(point <- grid.build()) {
       <g
-        transform="translate(@(point.getX), @(point.getY))"
+        transform="translate(@(point.getX + grid.size), @(point.getY + grid.size))"
       >
         <circle r="10"/>
       </g>
