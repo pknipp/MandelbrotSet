@@ -9,10 +9,10 @@ class Complex(val x: Float, val y: Float) {
   def getX: Float = x
   def getY: Float = y
   def mul(second: Complex): Complex = {
-    xb = second.getX
-    yb = second.getY
-    xc = x * xb - y * yb
-    yc = x * yb + y * xb
+    val xb = second.getX
+    val yb = second.getY
+    val xc = x * xb - y * yb
+    val yc = x * yb + y * xb
     new Complex(xc, yc)
   }
 }
