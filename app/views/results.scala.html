@@ -6,16 +6,18 @@
     width=@(2.0 * grid.size)
     height=@(2.0 * grid.size)
   >
-    @for(point <- grid.build()) {
-      <g
-        transform="translate(@(point.getX + grid.size), @(point.getY + grid.size))"
-      >
-        <path
-          d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
-          fill="none"
-          stroke="black"
-        />
-      </g>
-    }
+    <g transform="translate(@(grid.size), @(grid.size))">
+      @for(point <- grid.build()) {
+        <g
+          transform="translate(@(point.getX), @(point.getY))"
+        >
+          <path
+            d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
+            fill="none"
+            stroke="black"
+          />
+        </g>
+      }
+    </g>
   </svg>
 }
