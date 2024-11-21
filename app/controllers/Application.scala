@@ -19,18 +19,10 @@ class Complex(val x: Double, val y: Double) {
   }
 }
 
-@Singleton
-class Application @Inject()(val controllerComponents: ControllerComponents, val database: Database) extends BaseController {
-
-  def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
-  }
-
-  def results(path: String) = Action {
-    Ok(views.html.results(path))
-  }
-
-  def grid(size: Double, nxOverTwo: Int): Array[Complex] = {
+class Grid(val size: Double, nxOverTwo: Int) {
+  def getSize: Double = size
+  def getNx: Int = nxOverTwo * 2
+  def grid(): Array[Complex] = {
     val dxTimesTwo = size / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
     val ny = floor(size / dy)
@@ -53,6 +45,18 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       iy += 1
     }
     points.toArray
+  }
+}
+
+@Singleton
+class Application @Inject()(val controllerComponents: ControllerComponents, val database: Database) extends BaseController {
+
+  def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.index())
+  }
+
+  def results(path: String) = Action {
+    Ok(views.html.results(path, new Grid(400, 10)))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
