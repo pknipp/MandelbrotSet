@@ -4,7 +4,7 @@
 # ~~~~
 
 GET     /                           controllers.Application.index()
-GET     /:path              controllers.Application.showPath(path)
+GET     /:path              controllers.Application.results(path)
 GET     /database                   controllers.Application.db()
 
 # Map static resources from the /public folder to the /assets URL path
