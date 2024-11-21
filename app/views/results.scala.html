@@ -1,13 +1,13 @@
-@(path: String, totalSize: Double, points: Seq[Complex])
+@(path: String, size: Double, points: Seq[Complex])
 
 @main {
   <p>Results for path: @path</p>
   <svg
-    width=@totalSize
-    height=@totalSize
+    width=(2.0 * @size).toString
+    height=(2.0 * @size).toString
   >
     @for(point <- points) {
-      <circle cx=@point.getX cy=@point.getY r="10" />
+      <circle cx=(@point.getX + @size).toString cy=(@point.getY + @size).toString r="10" />
     }
   </svg>
 }
