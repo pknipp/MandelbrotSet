@@ -4,6 +4,8 @@ import javax.inject._
 import play.api._
 import play.api.db.Database
 import play.api.mvc._
+import scala.math._
+import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Float, val y: Float) {
   def getX: Float = x
@@ -14,6 +16,30 @@ class Complex(val x: Float, val y: Float) {
     val xc = x * xb - y * yb
     val yc = x * yb + y * xb
     new Complex(xc, yc)
+  }
+}
+
+def grid(size: Float, nxOverTwo: Int): Array[Complex] {
+  val dxTimesTwo = size / nxOverTwo
+  val dy = dxTimesTwo * sqrt(3) / 2
+  val ny = floor(size / dy)
+  var iy = -ny
+  val dx = dxTimesTwo / 2
+  val points = ArrayBuffer()
+  while (iy <= ny) {
+    val isEven = iy % 2 == 0
+    val y = iy * dy
+    var nx = floor(sqrt(size * size - y * y) / dx)
+    if ((ix % 2 == 0) != isEven) {
+      nx--
+    }
+    var ix = -nx
+    while (ix <= nx) {
+      val x = ix * dx
+      points += new Complex(x, y)
+      ix += 2
+    }
+    iy++
   }
 }
 
