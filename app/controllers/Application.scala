@@ -30,7 +30,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.results(path))
   }
 
-  def grid(size: Float, nxOverTwo: Int): Array[Complex] {
+  def grid(size: Float, nxOverTwo: Int): Array[Complex] = {
     val dxTimesTwo = size / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
     val ny = floor(size / dy)
@@ -52,6 +52,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       }
       iy++
     }
+    points
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
