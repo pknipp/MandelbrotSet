@@ -10,9 +10,11 @@
       <g
         transform="translate(@(point.getX + grid.size), @(point.getY + grid.size))"
       >
-        <circle r="10"/>
+        <!-- <circle r="10"/> -->
+        <path
+          d="M2,0L1,1.732h-2L-1,0L1,1.732h2L2,0"
+        />
       </g>
-      <!-- <circle cx=@(point.getX + grid.size) cy=@(point.getY + grid.size) r="10" /> -->
     }
   </svg>
 }
