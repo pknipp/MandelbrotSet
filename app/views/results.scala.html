@@ -1,4 +1,4 @@
-@(path: String, totalSize: Double, grid: Seq[Complex])
+@(path: String, totalSize: Double, points: Seq[Complex])
 
 @main {
   <p>Results for path: @path</p>
@@ -6,5 +6,8 @@
     width=@totalSize
     height=@totalSize
   >
+    @for(point <- point) {
+      <circle cx=@point.getX cy=@point.getY r="10" />
+    }
   </svg>
 }
