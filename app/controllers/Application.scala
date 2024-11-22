@@ -15,6 +15,11 @@ class Complex(val x: Double, val y: Double) {
     val yc = x * yb + y * xb
     new Complex(xc, yc)
   }
+  def iter(second: Complex): Complex = {
+    val xNew = x * x - y * y + second.x
+    val yNew = (x + x) * y + second.y
+    new Complex(xNew, yNew)
+  }
 }
 
 class Grid(val size: Double, val nxOverTwo: Int) {
