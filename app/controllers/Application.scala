@@ -8,11 +8,9 @@ import scala.math._
 import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
-  def getX: Double = x
-  def getY: Double = y
   def mul(second: Complex): Complex = {
-    val xb = second.getX
-    val yb = second.getY
+    val xb = second.x
+    val yb = second.y
     val xc = x * xb - y * yb
     val yc = x * yb + y * xb
     new Complex(xc, yc)
@@ -20,9 +18,6 @@ class Complex(val x: Double, val y: Double) {
 }
 
 class Grid(val size: Double, nxOverTwo: Int) {
-  def getSize: Double = size
-  def getNx: Int = nxOverTwo * 2
-  def getScale: Double = size / 2.0
   def build(): Array[Complex] = {
     val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2

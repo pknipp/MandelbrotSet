@@ -7,13 +7,13 @@
     height=@(2.0 * grid.size)
   >
     <g transform="translate(@grid.size, @grid.size)">
-      <g transform="scale(@(grid.getSize / 2.0))">
+      <g transform="scale(@(grid.size / 2.0))">
         <g>
           @for(point <- grid.build()) {
             <g
-              transform="translate(@point.getX, @point.getY)"
+              transform="translate(@point.x, @point.y)"
             >
-              <g transform="scale(@(2.0 / grid.getNx))">
+              <g transform="scale(@(1.0 / grid.nxOverTwo))">
                 <path
                   d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
                   fill="none"
