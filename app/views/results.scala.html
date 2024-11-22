@@ -6,7 +6,7 @@
     width=@(2.0 * grid.size)
     height=@(2.0 * grid.size)
   >
-    <g transform="translate(@(grid.size), @(grid.size))">
+    <g transform="translate(@grid.size, @grid.size)">
       <g transform="scale(@(grid.getScale))">
         <g>
           @for(point <- grid.build()) {
