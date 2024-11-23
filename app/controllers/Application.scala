@@ -26,7 +26,7 @@ class Complex(val x: Double, val y: Double) {
     val maxIter = 500
     var z = new Complex(0, 0)
     while (n < maxIter && z.magSq < 4) {
-      print(n, z)
+      print(n, z.magSq)
       z = iter(z)
       n += 1
     }
