@@ -33,12 +33,23 @@ class Complex(val x: Double, val y: Double) {
     n
   }
   def color(): String = {
-    var n = (iterNo() % 256) % 10
-    if (n > 0) {
+    val palette = Array(
+      "rgb(16, 16, 16)",
+      "rgb(48, 48, 48)",
+      "rgb(80, 80, 80)",
+      "rgb(112, 112, 112)",
+      "rgb(144, 144, 144)",
+      "rgb(176, 176, 176)",
+      "rgb(208, 208, 208)",
+      "rgb(240, 240, 240)",
+    )
+    var n = iterNo() % 256
+    if (n == 0) {
+      "rgb(0, 0, 0)"
+    } else {
       n %= 8
-      n = n * 32 + 16
+      palette[n * 32 + 16]
     }
-    s"""rgb("$n", "$n", "$n")"""
   }
 }
 
