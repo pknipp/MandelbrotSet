@@ -25,7 +25,7 @@ class Complex(val x: Double, val y: Double) {
     var n = 0
     val maxIter = 500
     var z = new Complex(0, 0)
-    while (iter < maxIter && magSq < 4) {
+    while (n < maxIter && magSq < 4) {
       z = iter(z)
       n += 1
     }
@@ -68,7 +68,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
   }
 
   def results(path: String) = Action {
-    Ok(views.html.results(path, new Grid(400.0, 100)))
+    Ok(views.html.results(path, new Grid(400.0, 10)))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
