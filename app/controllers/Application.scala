@@ -47,7 +47,7 @@ class Complex(val x: Double, val y: Double) {
     if (n == 0) {
       "#000000"
     } else {
-      n = floor(n / 32).toInt
+      n %= 8
       palette(n)
     }
   }
