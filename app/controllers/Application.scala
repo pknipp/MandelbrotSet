@@ -38,7 +38,7 @@ class Complex(val x: Double, val y: Double) {
       n %= 8
       n = n * 32 + 16
     }
-    s"rgb('$n', '$n', '$n')"
+    raw"rgb($n, $n, $n)"
   }
 }
 
