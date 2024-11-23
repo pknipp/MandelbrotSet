@@ -48,7 +48,7 @@ class Complex(val x: Double, val y: Double) {
       "rgb(0, 0, 0)"
     } else {
       n %= 8
-      palette[n * 32 + 16]
+      palette(n * 32 + 16)
     }
   }
 }
