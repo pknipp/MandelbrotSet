@@ -8,6 +8,7 @@ import scala.math._
 import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
+  val magSq = x * x + y * y
   def mul(second: Complex): Complex = {
     val xb = second.x
     val yb = second.y
@@ -16,9 +17,19 @@ class Complex(val x: Double, val y: Double) {
     new Complex(xc, yc)
   }
   def iter(second: Complex): Complex = {
-    val xNew = x * x - y * y + second.x
-    val yNew = (x + x) * y + second.y
+    val xNew = second.x * second.x - second.y * second.y + x
+    val yNew = (second.x + second.x) * second.y + y
     new Complex(xNew, yNew)
+  }
+  def iterNo(): Int = {
+    var iter = 0
+    val maxIter = 500
+    var z = new Complex(0, 0)
+    while (iter < maxIter && magSq < 4) {
+      z = iter(z)
+      iter += 1
+    }
+    iter
   }
 }
 
