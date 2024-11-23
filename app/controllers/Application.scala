@@ -9,6 +9,20 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
+  val iterNo = {
+    var n = 0
+    val maxIter = 256
+    var z = new Complex(0, 0)
+    while (n < maxIter && z.magSq < 4) {
+      print(n, z.magSq)
+      z = iter(z)
+      n += 1
+    }
+    if (n == maxIter) {
+      n = 0
+    }
+    n
+  }
   def mul(second: Complex): Complex = {
     val xb = second.x
     val yb = second.y
@@ -21,17 +35,7 @@ class Complex(val x: Double, val y: Double) {
     val yNew = (second.x + second.x) * second.y + y
     new Complex(xNew, yNew)
   }
-  def iterNo(): Int = {
-    var n = 0
-    val maxIter = 256
-    var z = new Complex(0, 0)
-    while (n < maxIter && z.magSq < 4) {
-      print(n, z.magSq)
-      z = iter(z)
-      n += 1
-    }
-    n
-  }
+
   def color(): String = {
     val palette = Array(
       "#101010",
@@ -54,7 +58,7 @@ class Complex(val x: Double, val y: Double) {
 }
 
 class Grid(val size: Double, val nxOverTwo: Int) {
-  def build(): Array[Complex] = {
+  val points = {
     val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
     val ny = floor(2.0 / dy)

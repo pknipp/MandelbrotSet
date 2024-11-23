@@ -10,7 +10,7 @@
       <g transform="translate(@grid.size, @grid.size)">
         <g transform="scale(@(grid.size / 2.0))">
           <g>
-            @for(point <- grid.build()) {
+            @for(point <- grid.points) {
               <g
                 transform="translate(@point.x, @point.y)"
               >
