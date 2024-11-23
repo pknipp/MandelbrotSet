@@ -23,7 +23,7 @@ class Complex(val x: Double, val y: Double) {
   }
   def iterNo(): Int = {
     var n = 0
-    val maxIter = 500
+    val maxIter = 256
     var z = new Complex(0, 0)
     while (n < maxIter && z.magSq < 4) {
       print(n, z.magSq)
@@ -31,6 +31,10 @@ class Complex(val x: Double, val y: Double) {
       n += 1
     }
     n
+  }
+  def color(): String = {
+    val n = iterNo() % 256
+    s"rgb($n, $n, $n)"
   }
 }
 
