@@ -47,7 +47,7 @@ class Complex(val x: Double, val y: Double) {
     if (n == 0) {
       "rgb(0, 0, 0)"
     } else {
-      n = floor(n / 32)
+      n = floor(n / 32).toInt
       palette(n)
     }
   }
