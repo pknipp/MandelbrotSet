@@ -47,7 +47,7 @@ class Complex(val x: Double, val y: Double) {
       "#d0d0d0",
       "#f0f0f0",
     )
-    var n = iterNo() % 256
+    var n = iterNo % 256
     if (n == 0) {
       "#000000"
     } else {
