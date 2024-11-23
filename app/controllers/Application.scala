@@ -45,7 +45,7 @@ class Complex(val x: Double, val y: Double) {
     )
     var n = iterNo() % 256
     if (n == 0) {
-      "rgb(0, 0, 0)"
+      "#000000"
     } else {
       n = floor(n / 32).toInt
       palette(n)
