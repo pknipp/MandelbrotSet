@@ -22,14 +22,14 @@ class Complex(val x: Double, val y: Double) {
     new Complex(xNew, yNew)
   }
   def iterNo(): Int = {
-    var iter = 0
+    var n = 0
     val maxIter = 500
     var z = new Complex(0, 0)
     while (iter < maxIter && magSq < 4) {
       z = iter(z)
-      iter += 1
+      n += 1
     }
-    iter
+    n
   }
 }
 
