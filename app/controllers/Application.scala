@@ -57,7 +57,7 @@ class Complex(val x: Double, val y: Double) {
   // }
 }
 
-class ComplexWithIterNo(val x: Double, val y: Double, iterNo: Int) extends Complex(x, y) {
+class ComplexWithIterNo(val x: Double, val y: Double) extends Complex(x, y) {
   val iterNo = {
     val z = new Complex(x, y)
     z.iterNo()
