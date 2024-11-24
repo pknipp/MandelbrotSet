@@ -9,9 +9,8 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
-  def calcIterNo(): Int = {
+  def calcIterNo(maxIter): Int = {
     var n = 0
-    val maxIter = 256
     var z = new Complex(0, 0)
     while (n < maxIter && z.magSq < 4) {
       print(n, z.magSq)
@@ -58,40 +57,19 @@ class Complex(val x: Double, val y: Double) {
 }
 
 class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x, y) {
-  def color(): String = {
-    val palette = Array(
-      "#101010",
-      "#303030",
-      "#505050",
-      "#707070",
-      "#909090",
-      "#b0b0b0",
-      "#d0d0d0",
-      "#f0f0f0",
-    )
-    var n = iterNo % 256
-    if (n == 0) {
+  def color(maxIterNo): String = {
+    if (iterNo == 0) {
       "#000000"
     } else {
-      n %= 15
-      n += 1
-      val hex = Integer.toString(n, 16)
-      // val hex = if (n == null) "00" else n.toInt.toString(16)
-      // val hex = if (n == null) "00" else {
-        // try {
-          // n.toInt.toString(16)
-        // } catch {
-          // case _: NumberFormatException => "invalid" // Or handle the error differently
-        // }
-      // }
-      s"#${hex}${hex}${hex}"
-      // n %= 8
-      // palette(n)
+      val n = floor(255 * iterNo / maxIterNo)
+      val hexR = Integer.toString(n, 16)
+      val hexB = Integer.toString(255 - n, 16)
+      s"#${hexR}00${hexB}"
     }
   }
 }
 
-class Grid(val size: Double, val nxOverTwo: Int) {
+class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
   val points = {
     val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
@@ -109,7 +87,7 @@ class Grid(val size: Double, val nxOverTwo: Int) {
       var ix = -nx
       while (ix <= nx) {
         val x = ix * dx
-        val iterNo = (new Complex(x, y)).calcIterNo()
+        val iterNo = (new Complex(x, y)).calcIterNo(maxIter)
         points += new ComplexWithIterNo(x, y, iterNo)
         ix += 2
       }
@@ -136,7 +114,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
   }
 
   def results(path: String) = Action {
-    Ok(views.html.results(path, new Grid(400.0, 200)))
+    Ok(views.html.results(path, new Grid(400.0, 100, 100)))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
