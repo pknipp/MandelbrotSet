@@ -41,7 +41,7 @@ class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x
     if (iterNo == 0) {
       "#000000"
     } else {
-      val n = floor(255 * iterNo / maxIterNo)
+      val n = floor(255 * iterNo / maxIterNo).toInt
       val hexR = Integer.toString(n, 16)
       val hexB = Integer.toString(255 - n, 16)
       s"#${hexR}00${hexB}"
