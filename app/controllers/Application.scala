@@ -36,13 +36,6 @@ class Complex(val x: Double, val y: Double) {
     new Complex(xNew, yNew)
   }
 
-  class ComplexWithIterNo(val x: Double, val y: Double, iterNo: Int) extends Complex(x, y) {
-    val iterNo = {
-      val z = new Complex(x, y)
-      z.iterNo()
-    }
-  }
-
   // def color(): String = {
     // val palette = Array(
       // "#101010",
@@ -62,6 +55,13 @@ class Complex(val x: Double, val y: Double) {
       // palette(n)
     // }
   // }
+}
+
+class ComplexWithIterNo(val x: Double, val y: Double, iterNo: Int) extends Complex(x, y) {
+  val iterNo = {
+    val z = new Complex(x, y)
+    z.iterNo()
+  }
 }
 
 class Grid(val size: Double, val nxOverTwo: Int) {
