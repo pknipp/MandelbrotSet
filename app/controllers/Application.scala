@@ -73,8 +73,12 @@ class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x
     if (n == 0) {
       "#000000"
     } else {
-      n %= 8
-      palette(n)
+      n %= 15
+      n += 1
+      val hex = n.toString(16)
+      s"#${hex}${hex}${hex}"
+      // n %= 8
+      // palette(n)
     }
   }
 }
