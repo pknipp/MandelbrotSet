@@ -62,7 +62,7 @@ class ComplexWithIterNo(val x: Double, val y: Double) extends Complex(x, y) {
     val z = new Complex(x, y)
     z.iterNo()
   }
-  val color = {
+  def color(): String = {
     val palette = Array(
       "#101010",
       "#303030",
