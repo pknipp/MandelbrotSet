@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
-  val iterNo = {
+  def iterNo(): Int = {
     var n = 0
     val maxIter = 256
     var z = new Complex(0, 0)
@@ -36,25 +36,32 @@ class Complex(val x: Double, val y: Double) {
     new Complex(xNew, yNew)
   }
 
-  def color(): String = {
-    val palette = Array(
-      "#101010",
-      "#303030",
-      "#505050",
-      "#707070",
-      "#909090",
-      "#b0b0b0",
-      "#d0d0d0",
-      "#f0f0f0",
-    )
-    var n = iterNo % 256
-    if (n == 0) {
-      "#000000"
-    } else {
-      n %= 8
-      palette(n)
+  class ComplexWithIterNo(val x: Double, val y: Double, iterNo: Int) extends Complex(x, y) {
+    val iterNo = {
+      val z = new Complex(x, y)
+      z.iterNo()
     }
   }
+
+  // def color(): String = {
+    // val palette = Array(
+      // "#101010",
+      // "#303030",
+      // "#505050",
+      // "#707070",
+      // "#909090",
+      // "#b0b0b0",
+      // "#d0d0d0",
+      // "#f0f0f0",
+    // )
+    // var n = iterNo % 256
+    // if (n == 0) {
+      // "#000000"
+    // } else {
+      // n %= 8
+      // palette(n)
+    // }
+  // }
 }
 
 class Grid(val size: Double, val nxOverTwo: Int) {
@@ -64,7 +71,7 @@ class Grid(val size: Double, val nxOverTwo: Int) {
     val ny = floor(2.0 / dy)
     var iy = -ny
     val dx = dxTimesTwo / 2
-    val points: ArrayBuffer[Complex] = ArrayBuffer()
+    val points: ArrayBuffer[ComplexWithIterNo] = ArrayBuffer()
     while (iy <= ny) {
       val isEven = iy % 2 == 0
       val y = iy * dy
@@ -75,12 +82,23 @@ class Grid(val size: Double, val nxOverTwo: Int) {
       var ix = -nx
       while (ix <= nx) {
         val x = ix * dx
-        points += new Complex(x, y)
+        val point = new Complex(x, y)
+        val iterNo = point.iterNo()
+        points += new ComplexWithIterNo(x, y, iterNo)
         ix += 2
       }
       iy += 1
     }
     points.toArray
+  }
+  val maxIterNo = {
+    var maxIterNo = 0
+    for (element <- myArray) {
+      if (maxIterNo < element.iterNo) {
+        maxIterNo = element.iterNo
+      }
+    }
+    maxIterNo
   }
 }
 

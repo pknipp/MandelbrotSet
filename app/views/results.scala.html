@@ -14,15 +14,19 @@
               <g
                 transform="translate(@point.x, @point.y)"
               >
-                <g transform="scale(@(2.0 / grid.size))">
-                  <text>
-                    @point.iterNo
-                  </text>
-                </g>
                 <g transform="scale(@(1.0 / grid.nxOverTwo))">
                   <path
                     d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
-                    fill=@point.color()
+                    fill=@(if (point.iterNo == 0) "#000000" else Array(
+                      "#101010",
+                      "#303030",
+                      "#505050",
+                      "#707070",
+                      "#909090",
+                      "#b0b0b0",
+                      "#d0d0d0",
+                      "#f0f0f0",
+                    )(point.iterNo % 8))
                   />
                 </g>
               </g>
