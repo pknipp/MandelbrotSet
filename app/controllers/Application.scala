@@ -91,9 +91,9 @@ class Grid(val size: Double, val nxOverTwo: Int) {
   }
   val maxIterNo = {
     var maxIterNo = 0
-    for (element <- myArray) {
-      if (maxIterNo < element.iterNo) {
-        maxIterNo = element.iterNo
+    for (point <- points) {
+      if (maxIterNo < point.iterNo) {
+        maxIterNo = point.iterNo
       }
     }
     maxIterNo
