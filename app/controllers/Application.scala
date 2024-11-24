@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
-  def calcIterNo(maxIter): Int = {
+  def calcIterNo(maxIter: Int): Int = {
     var n = 0
     var z = new Complex(0, 0)
     while (n < maxIter && z.magSq < 4) {
