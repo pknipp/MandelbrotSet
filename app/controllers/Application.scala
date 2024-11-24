@@ -13,14 +13,10 @@ class Complex(val x: Double, val y: Double) {
     var n = 0
     var z = new Complex(0, 0)
     while (n < maxIter && z.magSq < 4) {
-      print(n, z.magSq)
       z = iter(z)
       n += 1
     }
-    if (n == maxIter) {
-      n = 0
-    }
-    n
+    if (n == maxIter) 0 else n
   }
   def mul(second: Complex): Complex = {
     val xb = second.x
@@ -61,9 +57,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
       val isEven = iy % 2 == 0
       val y = iy * dy
       var nx = floor(sqrt(4.0 - y * y) / dx)
-      if ((nx % 2 == 0) != isEven) {
-        nx -= 1
-      }
+      if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
         val x = ix * dx
@@ -78,9 +72,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
   val maxIterNo = {
     var maxIterNo = 0
     for (point <- points) {
-      if (maxIterNo < point.iterNo) {
-        maxIterNo = point.iterNo
-      }
+      if (maxIterNo < point.iterNo) maxIterNo = point.iterNo
     }
     maxIterNo
   }
