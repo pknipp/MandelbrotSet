@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
-  def iterNo(): Int = {
+  def calcIterNo(): Int = {
     var n = 0
     val maxIter = 256
     var z = new Complex(0, 0)
@@ -97,7 +97,7 @@ class Grid(val size: Double, val nxOverTwo: Int) {
       var ix = -nx
       while (ix <= nx) {
         val x = ix * dx
-        val iterNo = (new Complex(x, y)).iterNo()
+        val iterNo = (new Complex(x, y)).calcIterNo()
         points += new ComplexWithIterNo(x, y, iterNo)
         ix += 2
       }
