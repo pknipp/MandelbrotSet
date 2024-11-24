@@ -34,30 +34,10 @@ class Complex(val x: Double, val y: Double) {
     val yNew = (second.x + second.x) * second.y + y
     new Complex(xNew, yNew)
   }
-
-  // def color(): String = {
-    // val palette = Array(
-      // "#101010",
-      // "#303030",
-      // "#505050",
-      // "#707070",
-      // "#909090",
-      // "#b0b0b0",
-      // "#d0d0d0",
-      // "#f0f0f0",
-    // )
-    // var n = iterNo % 256
-    // if (n == 0) {
-      // "#000000"
-    // } else {
-      // n %= 8
-      // palette(n)
-    // }
-  // }
 }
 
 class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x, y) {
-  def color(maxIterNo): String = {
+  def color(maxIterNo: Int): String = {
     if (iterNo == 0) {
       "#000000"
     } else {
