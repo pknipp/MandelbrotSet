@@ -82,9 +82,7 @@ class Grid(val size: Double, val nxOverTwo: Int) {
       var ix = -nx
       while (ix <= nx) {
         val x = ix * dx
-        val point = new Complex(x, y)
-        val iterNo = point.iterNo()
-        points += new ComplexWithIterNo(x, y, iterNo)
+        points += new ComplexWithIterNo(x, y)
         ix += 2
       }
       iy += 1
