@@ -52,7 +52,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
     val ny = floor(2.0 / dy)
     var iy = -ny
     val dx = dxTimesTwo / 2
-    val rows: ArrayBuffer[ArrayBuffer[ComplexWithIterNo]] = ArrayBuffer(ArrayBuffer())
+    val rows: ArrayBuffer[Array[ComplexWithIterNo]] = ArrayBuffer()
     while (iy <= ny) {
       val row: ArrayBuffer[ComplexWithIterNo] = ArrayBuffer()
       val isEven = iy % 2 == 0
