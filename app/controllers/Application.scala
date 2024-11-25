@@ -85,8 +85,8 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(path: String) = Action {
-    Ok(views.html.results(path, new Grid(400.0, 100, 100)))
+  def results(path: String, nxOverTwo: Int, maxIter: Int) = Action {
+    Ok(views.html.results(new Grid(400.0, nxOverTwo, maxIter)))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
