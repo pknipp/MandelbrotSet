@@ -44,7 +44,7 @@
           c[xy] = Number(svg.getAttribute(xy));
           return c;
         }, {});
-        const mag = Number.getAttribute("mag");
+        const mag = Number(svg.getAttribute("mag"));
         const cNew = xys.reduce(xy => {
           cNew[xy] = 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** mag;
           return c;
