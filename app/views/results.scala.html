@@ -45,9 +45,9 @@
           return c;
         }, {});
         const mag = Number(svg.getAttribute("mag"));
-        const cNew = xys.reduce((c, xy) => {
-          c[xy] = 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** mag;
-          return c;
+        const cNew = xys.reduce((cN, xy) => {
+          cN[xy] = c[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** mag;
+          return cN;
         }, {});
         xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
         svg.setAttribute("mag", mag + 1);
