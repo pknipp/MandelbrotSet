@@ -50,8 +50,7 @@
           return c;
         }, {});
         xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
-        svg.setAttribute("mag", 2 * mag);
-        console.log("(x, y) = (", cNew.x, cNew.y, ")");
+        svg.setAttribute("mag", mag + 1);
       });
     </script>
   </div>
