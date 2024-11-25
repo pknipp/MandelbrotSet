@@ -89,7 +89,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
+  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStrIn: String) = Action {
     val nxOverTwo = try {
       nxOverTwoStr.toInt
     } catch {
@@ -105,7 +105,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     } catch {
       case e: NumberFormatException => 0 // Or handle the error differently
     }
-    val cArr = cStr.split(",")
+    val cArr = cStr.replaceAll("\\s+", "").split(",")
     val xStr = cArr(0)
     val yStr = cArr(1)
     val x = try {
@@ -118,13 +118,12 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     } catch {
       case e: NumberFormatException => 0 // Or handle the error differently
     }
-    val c = new Complex(x, y)
     Ok(views.html.results(new Grid(
       400.0,
       nxOverTwo,
       maxIter,
       mag,
-      c.replaceAll("\\s+", ""),
+      new Complex(x, y),
     )))
   }
 
