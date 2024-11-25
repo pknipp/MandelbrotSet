@@ -45,7 +45,7 @@ class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x
   }
 }
 
-class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
+class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int, val c: Complex) {
   val rows = {
     val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
@@ -89,7 +89,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(nxOverTwoStr: String, maxIterStr: String) = Action {
+  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
     val nxOverTwo = try {
       nxOverTwoStr.toInt
     } catch {
@@ -100,7 +100,26 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     } catch {
       case e: NumberFormatException => 0 // Or handle the error differently
     }
-    Ok(views.html.results(new Grid(400.0, nxOverTwo, maxIter)))
+    val mag = try {
+      magStr.toInt
+    } catch {
+      case e: NumberFormatException => 0 // Or handle the error differently
+    }
+    val cArr = cStr.split(",")
+    val xStr = cArr(0)
+    val yStr = cArr(1)
+    val x = try {
+      xStr.toDouble
+    } catch {
+      case e: NumberFormatException => 0 // Or handle the error differently
+    }
+    val y = try {
+      yStr.toDouble
+    } catch {
+      case e: NumberFormatException => 0 // Or handle the error differently
+    }
+    val c = new Complex(x, y)
+    Ok(views.html.results(new Grid(400.0, nxOverTwo, maxIter, mag, c)))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
