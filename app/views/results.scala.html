@@ -35,7 +35,10 @@
       let svg = document.getElementById("svg");
       let rows = Array.from(svg.getElementsByClassName("row"));
       let ys = rows.map(row => Number(row.getAttribute("id")));
-      console.log("ys = ", ys);
+      svg.addEventListener("click", e => {
+        const y = e.offsetY;
+        console.log("y = ", y);
+      });
     </script>
   </div>
 }
