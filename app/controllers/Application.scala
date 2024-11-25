@@ -47,7 +47,7 @@ class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x
 
 class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int, val c: Complex) {
   val rows = {
-    val dxTimesTwo = 2.0 / nxOverTwo
+    val dxTimesTwo = 2.0 / nxOverTwo / 2 ** mag
     val dy = dxTimesTwo * sqrt(3) / 2
     val ny = floor(2.0 / dy)
     var iy = -ny
@@ -56,12 +56,12 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
     while (iy <= ny) {
       val row: ArrayBuffer[ComplexWithIterNo] = ArrayBuffer()
       val isEven = iy % 2 == 0
-      val y = iy * dy
-      var nx = floor(sqrt(4.0 - y * y) / dx)
+      val y = iy * dy + c.y
+      var nx = floor(sqrt(4.0 / 2 ** (2 * mag) - y * y) / dx)
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
-        val x = ix * dx
+        val x = ix * dx + c.x
         val iterNo = (new Complex(x, y)).calcIterNo(maxIter)
         row += new ComplexWithIterNo(x, y, iterNo)
         ix += 2
