@@ -13,10 +13,12 @@
             @for(row <- grid.rows) {
               <g
                 transform="translate(0, @row(0).y)"
+                id=@row(0).y
               >
                 @for(point <- row) {
                   <g
                     transform="translate(@point.x, 0) scale(@(1.0 / grid.nxOverTwo))"
+                    class=@point.x
                   >
                     <path
                       d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
