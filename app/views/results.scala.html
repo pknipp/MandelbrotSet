@@ -10,17 +10,23 @@
       <g transform="translate(@grid.size, @grid.size)">
         <g transform="scale(@(grid.size / 2.0))">
           <g>
-            @for(point <- grid.points) {
+            @for(row <- grid.rows) {
               <g
-                transform="translate(@point.x, @point.y)"
+                transform="translate(0, @row(0).y)"
               >
-                <g transform="scale(@(1.0 / grid.nxOverTwo))">
-                  <path
-                    d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
-                    fill=@point.color(grid.maxIterNo)
-                    stroke-width="0"
-                  />
-                </g>
+                @for(point <- row) {
+                  <g
+                    transform="translate(@point.x, 0)"
+                  >
+                    <g transform="scale(@(1.0 / grid.nxOverTwo))">
+                      <path
+                        d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
+                        fill=@point.color(grid.maxIterNo)
+                        stroke-width="0"
+                      />
+                    </g>
+                  </g>
+                }
               </g>
             }
           </g>

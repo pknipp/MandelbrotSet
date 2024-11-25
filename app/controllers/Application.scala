@@ -52,8 +52,9 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
     val ny = floor(2.0 / dy)
     var iy = -ny
     val dx = dxTimesTwo / 2
-    val points: ArrayBuffer[ComplexWithIterNo] = ArrayBuffer()
+    val rows: ArrayBuffer[ArrayBuffer[ComplexWithIterNo]] = ArrayBuffer(ArrayBuffer())
     while (iy <= ny) {
+      val row: ArrayBuffer[ComplexWithIterNo] = ArrayBuffer()
       val isEven = iy % 2 == 0
       val y = iy * dy
       var nx = floor(sqrt(4.0 - y * y) / dx)
@@ -62,12 +63,13 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
       while (ix <= nx) {
         val x = ix * dx
         val iterNo = (new Complex(x, y)).calcIterNo(maxIter)
-        points += new ComplexWithIterNo(x, y, iterNo)
+        row += new ComplexWithIterNo(x, y, iterNo)
         ix += 2
       }
+      rows += row.toArray
       iy += 1
     }
-    points.toArray
+    rows.toArray
   }
   val maxIterNo = {
     var maxIterNo = 0
