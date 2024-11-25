@@ -85,7 +85,17 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(path: String, nxOverTwo: Int, maxIter: Int) = Action {
+  def results(nxOverTwoStr: String, maxIterStr: String) = Action {
+    val nxOverTwo = try {
+      nxOverTwoStr.toInt
+    } catch {
+      case e: NumberFormatException => 0 // Or handle the error differently
+    }
+    val maxIter = try {
+      maxIterStr.toInt
+    } catch {
+      case e: NumberFormatException => 0 // Or handle the error differently
+    }
     Ok(views.html.results(new Grid(400.0, nxOverTwo, maxIter)))
   }
 
