@@ -46,7 +46,7 @@ class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x
 }
 
 class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int) {
-  val points = {
+  val rows = {
     val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
     val ny = floor(2.0 / dy)
