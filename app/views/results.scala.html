@@ -7,6 +7,9 @@
       width=@(2.0 * grid.size)
       height=@(2.0 * grid.size)
       id="svg"
+      mag="0"
+      x="0"
+      y="0"
     >
       <g transform="translate(@grid.size, @grid.size) scale(@(grid.size / 2.0))" id="rows">
         @for(row <- grid.rows) {
@@ -36,8 +39,19 @@
       let rows = Array.from(svg.getElementsByClassName("row"));
       let ys = rows.map(row => Number(row.getAttribute("id")));
       svg.addEventListener("click", e => {
-        const [x, y] = ["X", "Y"].map(XY => 2 * (e[`offset${XY}`] / @grid.size - 1));
-        console.log("(x, y) = (", x, y, ")");
+        const xys = ["x", "y"];
+        const c = xys.reduce((c, xy) => {
+          c[xy] = Number(svg.getAttribute(xy));
+          return c;
+        }, {});
+        const mag = Number.getAttribute("mag");
+        const cNew = xys.reduce(xy => {
+          cNew[xy] = 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** mag;
+          return c;
+        }, {});
+        xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
+        svg.setAttribute("mag", 2 * mag);
+        console.log("(x, y) = (", c.x, c.y, ")");
       });
     </script>
   </div>
