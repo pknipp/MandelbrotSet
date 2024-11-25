@@ -6,12 +6,14 @@
     <svg
       width=@(2.0 * grid.size)
       height=@(2.0 * grid.size)
+      id="svg"
     >
       <g transform="translate(@grid.size, @grid.size) scale(@(grid.size / 2.0))" id="rows">
         @for(row <- grid.rows) {
           <g
             transform="translate(0, @row(0).y)"
             id=@row(0).y
+            class="row"
           >
             @for(point <- row) {
               <g
@@ -30,7 +32,10 @@
       </g>
     </svg>
     <script>
-      console.log("Hello world!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      let svg = document.getElementById("svg");
+      let rows = Array.from(svg.getElementsByClassName("row"));
+      let ys = rows.map(row => Number(row.getAttribute("id")));
+      console.log("ys = ", ys);
     </script>
   </div>
 }
