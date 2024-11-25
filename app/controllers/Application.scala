@@ -119,7 +119,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       case e: NumberFormatException => 0 // Or handle the error differently
     }
     val c = new Complex(x, y)
-    Ok(views.html.results(new Grid(400.0, nxOverTwo, maxIter, mag, c)))
+    Ok(views.html.results(new Grid(
+      400.0,
+      nxOverTwo,
+      maxIter,
+      mag,
+      c.replaceAll("\\s+", ""),
+    )))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
