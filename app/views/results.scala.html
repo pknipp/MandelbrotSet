@@ -9,7 +9,7 @@
     >
       <g transform="translate(@grid.size, @grid.size)">
         <g transform="scale(@(grid.size / 2.0))">
-          <g>
+          <g id="rows">
             @for(row <- grid.rows) {
               <g
                 transform="translate(0, @row(0).y)"
