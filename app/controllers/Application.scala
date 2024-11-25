@@ -89,7 +89,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStrIn: String) = Action {
+  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
     val nxOverTwo = try {
       nxOverTwoStr.toInt
     } catch {
