@@ -64,7 +64,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
         var z = (new Complex(x, y)).mul(new Complex(pow(2, -mag).toDouble, 0.0)).add(c)
         val iterNo = z.calcIterNo(maxIter)
         z = complexToDom(z)
-        row += new ComplexWithIterNo(z.x, x.y, iterNo)
+        row += new ComplexWithIterNo(z.x, z.y, iterNo)
         ix += 2
       }
       rows += row.toArray
