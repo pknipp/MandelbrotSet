@@ -52,8 +52,9 @@
         mag++;
         //xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
         //svg.setAttribute("mag", mag + 1);
-        const urlFrag = `${@grid.nxOverTwo}/${@grid.maxIter}`;
-        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${urlFrag}/${mag}/(${cNew.x},${cNew.y})}`;
+        const nxOverTwo = @grid.nxOverTwo;
+        const maxIter = @grid.maxIter;
+        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${cNew.x},${cNew.y})}`;
       });
     </script>
   </div>
