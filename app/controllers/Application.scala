@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
-  def add(second: Complex): Complex = new Complex(x + second.x, y + second.y
+  def add(second: Complex): Complex = new Complex(x + second.x, y + second.y)
   def mul(second: Complex): Complex = {
     val xb = second.x
     val yb = second.y
