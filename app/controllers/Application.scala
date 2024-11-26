@@ -31,9 +31,7 @@ class Complex(val x: Double, val y: Double) {
   }
 }
 
-class ComplexWithIterNo(z: Complex, val iterNo: Int) extends Complex(x, y) {
-  val x = z.x
-  val y = z.y
+class ComplexWithIterNo(val x: Double, val y: Double, val iterNo: Int) extends Complex(x, y) {
   def color(maxIterNo: Int): String = {
     if (iterNo == 0) {
       "#000000"
@@ -64,7 +62,9 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       while (ix <= nx) {
         val x = ix * dx
         var z = (new Complex(x, y)).mul(new Complex(pow(2, -mag).toDouble, 0.0)).add(c)
-        row += new ComplexWithIterNo(complexToDom(z), z.calcIterNo(maxIter))
+        val iterNo = z.calcIterNo(maxIter)
+        z = complexToDom(z)
+        row += new ComplexWithIterNo(z.x, x.y, iterNo)
         ix += 2
       }
       rows += row.toArray
