@@ -62,9 +62,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       while (ix <= nx) {
         val x = ix * dx
         var z = (new Complex(x, y)).mul(new Complex(pow(2, -mag).toDouble, 0.0)).add(c)
-        val iterNo = z.calcIterNo(maxIter)
-        z = complexToDom(z)
-        row += new ComplexWithIterNo(z.x, z.y, iterNo)
+        row += complexToDom(new ComplexWithIterNo(z.x, z.y, z.calcIterNo(maxIter)))
         ix += 2
       }
       rows += row.toArray
@@ -81,10 +79,10 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
     }
     maxIterNo
   }
-  def complexToDom(z: Complex): Complex = {
+  def complexToDom(z: ComplexWithIterNo): ComplexWithIterNo = {
     z.add(c.mul(new Complex(-1.0, 0.0))).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 0)).mul(new Complex(size, 0))
   }
-  def domToComplex(z: Complex): Complex = {
+  def domToComplex(z: ComplexWithIterNo): ComplexWithIterNo = {
     z.mul(new Complex(1.0 / size, 0.0)).add(new Complex(-2.0, 0.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
   }
 }
