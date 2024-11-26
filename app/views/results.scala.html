@@ -11,7 +11,7 @@
       x=@grid.c.x
       y=@grid.c.y
     >
-      <g transform="translate(@grid.size, @grid.size))" id="rows">
+      <g id="rows">
         @for(row <- grid.rows) {
           <g
             transform="translate(0, @row(0).y)"
@@ -25,7 +25,7 @@
               >
                 <path
                   d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
-                  fill=@(domToComplex(point).color(grid.maxIterNo)
+                  fill=@(grid.domToComplex(point).color(grid.maxIterNo))
                   stroke-width="0"
                 />
               </g>
