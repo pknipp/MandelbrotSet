@@ -112,12 +112,12 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     val x = try {
       xStr.toDouble
     } catch {
-      case e: NumberFormatException => 0 // Or handle the error differently
+      case e: NumberFormatException => 42.0 // Or handle the error differently
     }
     val y = try {
       yStr.toDouble
     } catch {
-      case e: NumberFormatException => 0 // Or handle the error differently
+      case e: NumberFormatException => 0.0 // Or handle the error differently
     }
     println(xStr, x)
     Ok(views.html.results(new Grid(
