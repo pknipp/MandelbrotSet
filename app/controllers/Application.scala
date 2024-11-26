@@ -31,7 +31,7 @@ class Complex(val x: Double, val y: Double) {
   }
 }
 
-class ComplexWithIterNo(val x: Double, val y: Double, val iterNo: Int) extends Complex(x, y) {
+class ComplexWithIterNo(override val x: Double, override val y: Double, val iterNo: Int) extends Complex(x, y) {
   def color(maxIterNo: Int): String = {
     if (iterNo == 0) {
       "#000000"
