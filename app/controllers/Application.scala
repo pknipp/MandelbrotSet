@@ -58,6 +58,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       val isEven = iy % 2 == 0
       val y = iy * dy + c.y
       var nx = floor(sqrt(4.0 / pow(2, 2 * mag).toDouble - y * y) / dx)
+      println(nx)
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
