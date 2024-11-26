@@ -113,12 +113,12 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       xStr.substring(1).toDouble
     } catch {
       case e: NumberFormatException =>
-        case e: NumberFormatException => 0.0 // Or handle the error differently
+        case e: NumberFormatException => 0.0.toDouble // Or handle the error differently
     }
     val y = try {
       yStr.substring(0, yStr.length - 1).toDouble
     } catch {
-      case e: NumberFormatException => 0.0 // Or handle the error differently
+      case e: NumberFormatException => 0.0.toDouble // Or handle the error differently
     }
     println(xStr, x)
     Ok(views.html.results(new Grid(
