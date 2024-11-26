@@ -9,12 +9,6 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
-  def add(second: Complex): Complex = new Complex(x + second.x, y + second.y)
-  def mul(second: Complex): Complex = {
-    val xb = second.x
-    val yb = second.y
-    new Complex(x * xb - y * yb, x * yb + y * xb)
-  }
   def iter(second: Complex): Complex = {
     val xNew = second.x * second.x - second.y * second.y + x
     val yNew = (second.x + second.x) * second.y + y
@@ -41,6 +35,12 @@ class ComplexWithIterNo(override val x: Double, override val y: Double, val iter
       var hexB = (if (255 - n < 16) "0" else "") + Integer.toString(255 - n, 16)
       s"#${hexR}00${hexB}"
     }
+  }
+  def add(second: Complex): ComplexWithIterNo = new ComplexWithIterNo(x + second.x, y + second.y, iterNo)
+  def mul(second: Complex): ComplexWithIterNo = {
+    val xb = second.x
+    val yb = second.y
+    new ComplexWithIterNo(x * xb - y * yb, x * yb + y * xb, iterNo)
   }
 }
 
