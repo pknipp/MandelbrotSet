@@ -49,7 +49,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
   val rows = {
     val dxTimesTwo = 2.0 / nxOverTwo / pow(2, mag).toDouble
     val dy = dxTimesTwo * sqrt(3) / 2
-    val ny = floor(2.0 / dy)
+    val ny = floor(2.0 / dy / pow(2, mag).toDouble)
     var iy = -ny
     val dx = dxTimesTwo / 2
     val rows: ArrayBuffer[Array[ComplexWithIterNo]] = ArrayBuffer()
@@ -58,7 +58,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       val isEven = iy % 2 == 0
       val y = iy * dy + c.y
       var nx = floor(sqrt(4.0 / pow(2, 2 * mag).toDouble - y * y) / dx)
-      println(nx)
+      // println(nx)
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
