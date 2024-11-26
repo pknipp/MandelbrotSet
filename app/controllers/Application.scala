@@ -112,7 +112,9 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     val x = try {
       xStr.toDouble
     } catch {
-      println(s"Error converting '$xStr' to Double: ${e.getMessage}")
+      case e: NumberFormatException =>
+        println(s"Error converting '$xStr' to Double: ${e.getMessage}")
+        0.0
       // case e: NumberFormatException => 0.0 // Or handle the error differently
     }
     val y = try {
