@@ -20,7 +20,7 @@
           >
             @for(point <- row) {
               <g
-                transform="translate(@point.x, 0) scale(@(1.0 / grid.nxOverTwo))"
+                transform="translate(@point.x, 0) scale(@(grid.size / grid.nxOverTwo))"
                 class=@point.x
               >
                 <path
