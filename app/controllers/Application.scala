@@ -9,6 +9,17 @@ import scala.collection.mutable.ArrayBuffer
 
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
+  def add(second: Complex): Complex = new Complex(x + second.x, y + second.y
+  def mul(second: Complex): Complex = {
+    val xb = second.x
+    val yb = second.y
+    new Complex(x * xb - y * yb, x * yb + y * xb)
+  }
+  def iter(second: Complex): Complex = {
+    val xNew = second.x * second.x - second.y * second.y + x
+    val yNew = (second.x + second.x) * second.y + y
+    new Complex(xNew, yNew)
+  }
   def calcIterNo(maxIter: Int): Int = {
     var n = 0
     var z = new Complex(0, 0)
@@ -18,22 +29,11 @@ class Complex(val x: Double, val y: Double) {
     }
     if (n == maxIter) 0 else n
   }
-  def mul(second: Complex): Complex = {
-    val xb = second.x
-    val yb = second.y
-    new Complex(x * xb - y * yb, x * yb + y * xb)
-  }
-  def add(second: Complex): Complex = {
-    new Complex(x + second.x, y + second.y)
-  }
-  def iter(second: Complex): Complex = {
-    val xNew = second.x * second.x - second.y * second.y + x
-    val yNew = (second.x + second.x) * second.y + y
-    new Complex(xNew, yNew)
-  }
 }
 
-class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x, y) {
+class ComplexWithIterNo(z: Complex, val iterNo: Int) extends Complex(x, y) {
+  val x = z.x
+  val y = z.y
   def color(maxIterNo: Int): String = {
     if (iterNo == 0) {
       "#000000"
@@ -48,24 +48,23 @@ class ComplexWithIterNo(x: Double, y: Double, val iterNo: Int) extends Complex(x
 
 class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int, val c: Complex) {
   val rows = {
-    val dxTimesTwo = 2.0 / nxOverTwo / pow(2, mag).toDouble
+    val dxTimesTwo = 2.0 / nxOverTwo
     val dy = dxTimesTwo * sqrt(3) / 2
-    val ny = floor(2.0 / dy / pow(2, mag).toDouble)
+    val ny = floor(2.0 / dy)
     var iy = -ny
     val dx = dxTimesTwo / 2
     val rows: ArrayBuffer[Array[ComplexWithIterNo]] = ArrayBuffer()
     while (iy <= ny) {
       val row: ArrayBuffer[ComplexWithIterNo] = ArrayBuffer()
       val isEven = iy % 2 == 0
-      val y = iy * dy + c.y
-      var nx = floor(sqrt(4.0 / pow(2, 2 * mag).toDouble - y * y) / dx)
-      // println(nx)
+      val y = iy * dy
+      var nx = floor(sqrt(4.0 - y * y) / dx)
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
-        val x = ix * dx + c.x
-        val iterNo = (new Complex(x, y)).calcIterNo(maxIter)
-        row += new ComplexWithIterNo(x, y, iterNo)
+        val x = ix * dx
+        var z = (new Complex(x, y)).mul(new Complex(pow(2, -mag).toDouble, 0.0)).add(c)
+        row += new ComplexWithIterNo(complexToDom(z), z.calcIterNo(maxIter))
         ix += 2
       }
       rows += row.toArray
@@ -82,10 +81,10 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
     }
     maxIterNo
   }
-  def zToDom(z: Complex): Complex = {
+  def complexToDom(z: Complex): Complex = {
     z.add(c.mul(new Complex(-1.0, 0.0))).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 0)).mul(new Complex(size, 0))
   }
-  def domToZ(z: Complex): Complex = {
+  def domToComplex(z: Complex): Complex = {
     z.mul(new Complex(1.0 / size, 0.0)).add(new Complex(-2.0, 0.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
   }
 }
