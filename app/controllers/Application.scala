@@ -119,6 +119,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     } catch {
       case e: NumberFormatException => 0 // Or handle the error differently
     }
+    println(xStr, x)
     Ok(views.html.results(new Grid(
       400.0,
       nxOverTwo,
