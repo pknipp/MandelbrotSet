@@ -70,6 +70,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       rows += row.toArray
       iy += 1
     }
+    println(rows)
     rows.toArray
   }
   val maxIterNo = {
