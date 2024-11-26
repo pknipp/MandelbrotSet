@@ -7,9 +7,9 @@
       width=@(2.0 * grid.size)
       height=@(2.0 * grid.size)
       id="svg"
-      mag="0"
-      x="0"
-      y="0"
+      mag=@grid.mag
+      x=@grid.c.x
+      y=@grid.c.y
     >
       <g transform="translate(@grid.size, @grid.size) scale(@(grid.size / 2))" id="rows">
         @for(row <- grid.rows) {
@@ -44,13 +44,15 @@
           c[xy] = Number(svg.getAttribute(xy));
           return c;
         }, {});
-        const mag = Number(svg.getAttribute("mag"));
+        let mag = Number(svg.getAttribute("mag"));
         const cNew = xys.reduce((cN, xy) => {
           cN[xy] = c[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** mag;
           return cN;
         }, {});
-        xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
-        svg.setAttribute("mag", mag + 1);
+        mag++;
+        //xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
+        //svg.setAttribute("mag", mag + 1);
+        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${@grid.nxOverTwo}/${@grid.maxIter}/${mag}/(${cNew.x},${cNew.y})}`;
       });
     </script>
   </div>
