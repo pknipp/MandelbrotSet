@@ -84,10 +84,10 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
     maxIterNo
   }
   def complexToDom(z: ComplexWithIterNo): ComplexWithIterNo = {
-    z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 0)).mul(new Complex(size, 0))
+    z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size, 0))
   }
   def domToComplex(z: ComplexWithIterNo): ComplexWithIterNo = {
-    z.mul(new Complex(1.0 / size, 0.0)).add(new Complex(-2.0, 0.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
+    z.mul(new Complex(1.0 / size, 0.0)).add(new Complex(-2.0, -2.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
   }
 }
 
