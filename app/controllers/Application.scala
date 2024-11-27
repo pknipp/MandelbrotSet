@@ -55,7 +55,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
   val rows = {
     val dxTimesTwo = 2.0 / nxOverTwo / pow(2, mag).toDouble
     val dy = dxTimesTwo * sqrt(3) / 2
-    val ny = floor(2.0 / dy)
+    val ny = floor(2.0 / dy / pow(2, mag).toDouble)
     var iy = -ny
     val dx = dxTimesTwo / 2
     val rows: ArrayBuffer[Array[Complex]] = ArrayBuffer()
