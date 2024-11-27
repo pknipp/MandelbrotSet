@@ -53,17 +53,20 @@ class Complex(val x: Double, val y: Double) {
 
 class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int, val c: Complex) {
   val rows = {
-    val dxTimesTwo = 2.0 / nxOverTwo / pow(2, mag).toDouble
-    val dy = dxTimesTwo * sqrt(3) / 2
-    val ny = floor(2.0 / dy / pow(2, mag).toDouble)
+    var dxTimesTwo = 2.0 / nxOverTwo
+    var dy = dxTimesTwo * sqrt(3) / 2
+    val ny = floor(2.0 / dy)
     var iy = -ny
+    dxTimesTwo /= pow(2, mag).toDouble
     val dx = dxTimesTwo / 2
+    dy /= pow(2, mag).toDouble
     val rows: ArrayBuffer[Array[Complex]] = ArrayBuffer()
     while (iy <= ny) {
       val row: ArrayBuffer[Complex] = ArrayBuffer()
       val isEven = iy % 2 == 0
-      val y = iy * dy + c.y
+      var y = iy * dy
       var nx = floor(sqrt(4.0 / pow(2, 2 * mag).toDouble - y * y) / dx)
+      y += c.y
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
