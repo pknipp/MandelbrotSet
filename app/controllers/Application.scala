@@ -13,11 +13,11 @@ class Complex(val x: Double, val y: Double) {
   def setIterNo(newIterNo: Int): Unit = {
     iterNo = newIterNo
   }
-  def add(second: Complex): Complex = new Complex(x + second.x, y + second.y)
+  def add(second: Complex): Complex = new Complex(x + second.x, y + second.y, iterNo)
   def mul(second: Complex): Complex = {
     val xb = second.x
     val yb = second.y
-    new Complex(x * xb - y * yb, x * yb + y * xb)
+    new Complex(x * xb - y * yb, x * yb + y * xb, iterNo)
   }
   def iter(second: Complex): Complex = {
     val xNew = second.x * second.x - second.y * second.y + x
