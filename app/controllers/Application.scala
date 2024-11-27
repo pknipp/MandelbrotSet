@@ -19,12 +19,6 @@ class Complex(val x: Double, val y: Double) {
     val yb = second.y
     new Complex(x * xb - y * yb, x * yb + y * xb)
   }
-  def toDom(z: Complex): Complex = {
-    z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
-  }
-  def fromDom(z: Complex): Complex = {
-    z.mul(new Complex(2.0 / size, 0.0)).add(new Complex(-2.0, -2.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
-  }
   def iter(second: Complex): Complex = {
     val xNew = second.x * second.x - second.y * second.y + x
     val yNew = (second.x + second.x) * second.y + y
@@ -86,6 +80,12 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       }
     }
     maxIterNo
+  }
+  def toDom(z: Complex): Complex = {
+    z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
+  }
+  def fromDom(z: Complex): Complex = {
+    z.mul(new Complex(2.0 / size, 0.0)).add(new Complex(-2.0, -2.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
   }
 }
 
