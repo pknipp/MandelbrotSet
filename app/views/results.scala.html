@@ -15,17 +15,17 @@
         <tr>
           <td>maximum # of iterations</td>
           <td>@(grid.maxIter)</td>
-          <td>double maximum #</td>
+          <td><button id="increase-iterations">double</button> this</td>
         </tr>
         <tr>
           <td># of hexagonal cells</td>
-          <td>@rows.reduceLeft((acc, arr) => acc + arr.length)</td>
-          <td>quadruple # of cells</td>
+          <td>@(rows.reduceLeft((acc, arr) => acc + arr.length))</td>
+          <td><button id="increase-cells">quadruple</button> this</td>
         </tr>
         <tr>
           <td>magnification</td>
           <td>@(pow(2, grid.mag)</td>
-          <td>double this</td>
+          <td><button id="increase-magnification">double</button> this</td>
         </tr>
       </tbody>
     </table>
@@ -64,6 +64,9 @@
       let svg = document.getElementById("svg");
       let rows = Array.from(svg.getElementsByClassName("row"));
       let ys = rows.map(row => Number(row.getAttribute("id")));
+      let iterationButton = document.getElementById("increase-iterations");
+      let cellsButton = document.getElementById("increase-cells");
+      let magnificationButton = document.getElementById("increase-magnification");
       svg.addEventListener("click", e => {
         const xys = ["x", "y"];
         const c = xys.reduce((c, xy) => {
@@ -76,8 +79,6 @@
           return cN;
         }, {});
         mag++;
-        //xys.forEach(xy => svg.setAttribute(xy, cNew[xy]));
-        //svg.setAttribute("mag", mag + 1);
         const nxOverTwo = @grid.nxOverTwo;
         const maxIter = @grid.maxIter;
         window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${cNew.x},${cNew.y})`;
