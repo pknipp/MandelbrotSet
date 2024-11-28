@@ -61,6 +61,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
     val dx = dxTimesTwo / 2
     dy /= pow(2, mag).toDouble
     val rows: ArrayBuffer[Array[Complex]] = ArrayBuffer()
+    var numCells = 0
     while (iy <= ny) {
       val row: ArrayBuffer[Complex] = ArrayBuffer()
       val isEven = iy % 2 == 0
@@ -70,6 +71,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
       while (ix <= nx) {
+        numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
         z.setIterNo(z.calcIterNo(maxIter))
@@ -93,9 +95,6 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
   def toDom(z: Complex): Complex = {
     z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
   }
-  // def fromDom(z: Complex): Complex = {
-    // z.mul(new Complex(2.0 / size, 0.0)).add(new Complex(-2.0, -2.0)).mul(new Complex(pow(2, -mag).toDouble, 0)).add(c)
-  // }
 }
 
 @Singleton

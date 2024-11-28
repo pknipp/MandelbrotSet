@@ -3,6 +3,27 @@
 @main {
   <div style="display: flex; flex-direction: column; align-items: center;">
     <div>Results:</div>
+    <table>
+      <thead>
+        <tr>
+          <th>quantity</th>
+          <th>value</th>
+          <th>control</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>maximum # of iterations</td>
+          <td>@(grid.maxIter)</td>
+          <td>button</td>
+        </tr>
+        <tr>
+          <td># of hexagonal cells</td>
+          <td>(number of cells)</td>
+          <td>button</td>
+        </tr>
+      </tbody>
+    </table>
     <svg
       width=@(2.0 * grid.size)
       height=@(2.0 * grid.size)
