@@ -15,12 +15,17 @@
         <tr>
           <td>maximum # of iterations</td>
           <td>@(grid.maxIter)</td>
-          <td>button</td>
+          <td>double maximum #</td>
         </tr>
         <tr>
           <td># of hexagonal cells</td>
-          <td>(number of cells)</td>
-          <td>button</td>
+          <td>@rows.reduceLeft((acc, arr) => acc + arr.length)</td>
+          <td>quadruple # of cells</td>
+        </tr>
+        <tr>
+          <td>magnification</td>
+          <td>@(pow(2, grid.mag)</td>
+          <td>double this</td>
         </tr>
       </tbody>
     </table>
