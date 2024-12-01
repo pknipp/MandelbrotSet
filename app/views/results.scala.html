@@ -18,7 +18,6 @@
           <td>
             <button
               id="increase-iterations"
-              onclick= "() => console.log('increase iterations')"
             >
               double
             </button>
@@ -89,6 +88,10 @@
       let rows = Array.from(svg.getElementsByClassName("row"));
       let ys = rows.map(row => Number(row.getAttribute("id")));
       let iterationButton = document.getElementById("increase-iterations");
+      iterationButton.addEventListener("click", e => {
+        console.log("increase iterations");
+      })
+      onclick= "() => console.log('increase iterations')"
       let cellsButton = document.getElementById("increase-cells");
       let magnificationButton = document.getElementById("increase-magnification");
       svg.addEventListener("click", e => {
