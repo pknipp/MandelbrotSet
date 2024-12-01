@@ -19,7 +19,7 @@
         </tr>
         <tr>
           <td># of hexagonal cells</td>
-          <td>@(rows.reduceLeft((acc, arr) => acc + arr.length))</td>
+          <td>@(grid.rows.reduceLeft((count, row) => count + row.length))</td>
           <td><button id="increase-cells">quadruple</button> this</td>
         </tr>
         <tr>
