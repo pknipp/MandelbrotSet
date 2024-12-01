@@ -52,6 +52,9 @@ class Complex(val x: Double, val y: Double) {
 }
 
 class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int, val c: Complex) {
+  val mag2 = {
+    pow(2, mag)
+  }
   val rows = {
     var dxTimesTwo = 2.0 / nxOverTwo
     var dy = dxTimesTwo * sqrt(3) / 2
