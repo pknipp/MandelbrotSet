@@ -87,7 +87,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
     rows.toArray
   }
   val numberOfCells = {
-    rows.reduceLeft((count, row) => count + row.length)
+    rows.map(_.length).sum
   }
   val maxIterNo = {
     var maxIterNo = 0
