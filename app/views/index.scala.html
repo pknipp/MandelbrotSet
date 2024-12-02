@@ -34,17 +34,21 @@
     </p>
     <p>
       <b>Controls:</b>
-        <ul>
-          <li>resolution: (approximate) number of hexagonally shaped cells along the radius of the viewing area of the complex plane</li>
-          <li>iterations: number of times that the mapping is iterated before determining if it has diverged (ie should be excluded the set)</li>
-          <li>magnification: number of times that the resolution has doubled</li>
-        </ul>
+      <ul>
+        <li>resolution: (approximate) number of hexagonally shaped cells along the radius of the viewing area of the complex plane</li>
+        <li>iterations: number of times that the mapping is iterated before determining if it has diverged (ie should be excluded the set)</li>
+        <li>magnification: number of times that the user has halved the viewing area</li>
+        <li>center: real and imaginary parts (aka coordinates) of the complex number at the center of the viewing area</li>
+      </ul>
+      Note that increasing either of the first two numbers increases the computational workload required. If adjusting any of these seems to kill the app, click your browser's back arrow, cross your fingers, and try again.
+    </p>
+    <p>
       <b>Instructions:</b> After <tt>...herokuapp.com</tt> above you should type
       <br>
-      <tt>/&langle;resolution&rangle;/&langle;iterations&rangle;/&langle;magnification&rangle;/&langle;center&rangle;</tt>, in which the first three inputs are defined above and <tt>center</tt> is the real and imaginary parts (aka coordinates) of the complex number at the center of the viewing area.
-      The easiest way to control this app, however, is via buttons.  For instance the button below generates the url <tt>...heroku.com/20/40/0/(0,0)</tt>.
+      <tt>/&langle;resolution&rangle;/&langle;iterations&rangle;/&langle;magnification&rangle;/&langle;center&rangle;</tt>, in which the inputs are defined above. That said, the easiest way to control this app, however, is via buttons.  For instance the button below generates the url <tt>...heroku.com/20/40/0/(0,0)</tt>.
       <br>
       <button id="render-mandelbrot-set">Render example.</button>
+    </p>
   </div>
 
   <script>
