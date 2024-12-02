@@ -112,13 +112,13 @@
       iterationButton.addEventListener("click", e => {
         window.location.href = newPath(path, "maxIter");
       });
-      // svg.addEventListener("click", e => {
-        // path.center = ["x", "y"].reduce((c, xy) => {
-          // c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
-          // return c;
-        // }, {});
-        // window.location.href = newPath(path, "mag");
-      // });
+      svg.addEventListener("click", e => {
+        path.center = ["x", "y"].reduce((c, xy) => {
+          c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
+          return c;
+        }, {});
+        window.location.href = newPath(path, "mag");
+      });
     </script>
   </div>
 }
