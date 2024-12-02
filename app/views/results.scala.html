@@ -14,14 +14,14 @@
       <tbody>
         <tr>
           <td># of hexagonal cells</td>
-          <td>@(grid.numberOfCells)</td>
+          <td>@(grid.numberOfCells.toExponential(2))</td>
           <td>
             <button id="increase-cells">quadruple</button>this
           </td>
         </tr>
         <tr>
           <td>maximum # of iterations</td>
-          <td>@(grid.maxIter)</td>
+          <td>@(grid.maxIter.toExponential(2))</td>
           <td>
             <button
               id="increase-iterations"
@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <td>magnification</td>
-          <td>@(grid.mag2)</td>
+          <td>@(grid.mag2.toExponential(2))</td>
           <td>
             Click spot in chart to zoom in.
           </td>
@@ -90,12 +90,10 @@
 
       cellsButton.addEventListener("click", e => {
         nxOverTwo *= 2;
-        console.log("increase cells");
         window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${c.x},${c.y})`;
       });
       iterationButton.addEventListener("click", e => {
         maxIter *= 2;
-        console.log("increase iterations");
         window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${c.x},${c.y})`;
       });
       svg.addEventListener("click", e => {
