@@ -13,18 +13,6 @@
       </thead>
       <tbody>
         <tr>
-          <td>maximum # of iterations</td>
-          <td>@(grid.maxIter)</td>
-          <td>
-            <button
-              id="increase-iterations"
-            >
-              double
-            </button>
-            this
-          </td>
-        </tr>
-        <tr>
           <td># of hexagonal cells</td>
           <td>@(grid.numberOfCells)</td>
           <td>
@@ -38,16 +26,22 @@
           </td>
         </tr>
         <tr>
-          <td>magnification</td>
-          <td>@(grid.mag2)</td>
+          <td>maximum # of iterations</td>
+          <td>@(grid.maxIter)</td>
           <td>
             <button
-              id="increase-magnification"
-              onclick= "() => console.log('increase magnification')"
+              id="increase-iterations"
             >
               double
             </button>
             this
+          </td>
+        </tr>
+        <tr>
+          <td>magnification</td>
+          <td>@(grid.mag2)</td>
+          <td>
+            Click spot in chart to zoom in.
           </td>
         </tr>
       </tbody>
@@ -87,27 +81,33 @@
       let svg = document.getElementById("svg");
       let rows = Array.from(svg.getElementsByClassName("row"));
       let ys = rows.map(row => Number(row.getAttribute("id")));
+
+      const nxOverTwo = @grid.nxOverTwo;
+      const maxIter = @grid.maxIter;
+      const mag = Number(svg.getAttribute("mag"));
+      const xys = ["x", "y"];
+      const c = xys.reduce((c, xy) => {
+        c[xy] = Number(svg.getAttribute(xy));
+        return c;
+      }, {});
+
+      let cellsButton = document.getElementById("increase-cells");
       let iterationButton = document.getElementById("increase-iterations");
+
+      cellsButton.addEventListener("click", e => {
+        console.log("increase cells");
+        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo * 2}/${maxIter}/${mag + 1}/(${c.x},${c.y})`;
+      });
       iterationButton.addEventListener("click", e => {
         console.log("increase iterations");
-      })
-      onclick= "() => console.log('increase iterations')"
-      let cellsButton = document.getElementById("increase-cells");
-      let magnificationButton = document.getElementById("increase-magnification");
+        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter * 2}/${mag}/(${c.x},${c.y})`;
+      });
       svg.addEventListener("click", e => {
-        const xys = ["x", "y"];
-        const c = xys.reduce((c, xy) => {
-          c[xy] = Number(svg.getAttribute(xy));
-          return c;
-        }, {});
-        let mag = Number(svg.getAttribute("mag"));
         const cNew = xys.reduce((cN, xy) => {
           cN[xy] = c[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** mag;
           return cN;
         }, {});
         mag++;
-        const nxOverTwo = @grid.nxOverTwo;
-        const maxIter = @grid.maxIter;
         window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${cNew.x},${cNew.y})`;
       });
     </script>
