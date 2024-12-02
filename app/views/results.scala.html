@@ -86,20 +86,20 @@
         }, {}),
       };
 
-      // const newPath = (path, button) => {
-        // const prePath = "https://fractal-examples-e4144646641a.herokuapp.com/";
-        // switch (button) {
-          // case "nxOverTwo":
-            // path.nxOverTwo *= 2;
+      const newPath = (path, button) => {
+        const prePath = "https://fractal-examples-e4144646641a.herokuapp.com/";
+        switch (button) {
+          case "nxOverTwo":
+            path.nxOverTwo *= 2;
           // case "maxIter":
             // path.maxIter *= 2;
           // case "mag":
             // path.mag++;
-          // default:
-            // break;
-        // };
-        // return `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
-      // };
+          default:
+            break;
+        };
+        return `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
+      };
 
       // let cellsButton = document.getElementById("increase-cells");
       // let iterationButton = document.getElementById("increase-iterations");
