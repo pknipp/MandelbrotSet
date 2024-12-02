@@ -103,14 +103,14 @@
       };
 
       let cellsButton = document.getElementById("increase-cells");
-      // let iterationButton = document.getElementById("increase-iterations");
+      let iterationButton = document.getElementById("increase-iterations");
 
       cellsButton.addEventListener("click", e => {
         window.location.href = newPath(path, "nxOverTwo");
       });
-      // iterationButton.addEventListener("click", e => {
-        // window.location.href = newPath(path, "maxIter");
-      // });
+      iterationButton.addEventListener("click", e => {
+        window.location.href = newPath(path, "maxIter");
+      });
       // svg.addEventListener("click", e => {
         // path.center = ["x", "y"].reduce((c, xy) => {
           // c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
