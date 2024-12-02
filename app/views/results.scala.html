@@ -86,7 +86,7 @@
         }, {}),
       };
 
-      const newPath = (path, button) => {
+      const setNewPath = (path, button) => {
         const prepath = "https://fractal-examples-e4144646641a.herokuapp.com";
         // Weird errors resulted when I used a switch statement for following.
         if (button === "nxOverTwo") path.nxOverTwo *= 2;
@@ -98,14 +98,14 @@
       let cellsButton = document.getElementById("increase-cells");
       let iterationButton = document.getElementById("increase-iterations");
 
-      cellsButton.addEventListener("click", e => newPath(path, "nxOverTwo"));
-      iterationButton.addEventListener("click", e => newPath(path, "maxIter"));
+      cellsButton.addEventListener("click", e => setNewPath(path, "nxOverTwo"));
+      iterationButton.addEventListener("click", e => setNewPath(path, "maxIter"));
       svg.addEventListener("click", e => {
         path.center = ["x", "y"].reduce((c, xy) => {
           c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
           return c;
         }, {});
-        newPath(path, "mag");
+        setNewPath(path, "mag");
       });
     </script>
   </div>
