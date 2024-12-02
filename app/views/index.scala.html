@@ -1,7 +1,60 @@
 @()
 
 @main {
-  <div>
-    Hello PK's scala starter.
+  <div style="padding-top: 20px; padding-left: 40px; padding-right: 40px;">';
+    <h3><p align=center>Fractals</p></h3>
+    <p align=center>
+      <a href="https://pknipp.github.io/math">Return</a>
+      to the Math APIs page.
+      </br>
+      creator:&nbsp;
+      <a
+          href="https://pknipp.github.io/"
+          target="_blank" rel="noopener noreferrer"
+      >
+          Peter Knipp
+      </a>
+      <br/>
+      repo:&nbsp;<a
+          href="https://github.com/pknipp/fractal"
+          target="_blank"
+          rel='noopener
+          noreferrer
+      '>
+          https://github.com/pknipp/fractal
+      </a>
+    </p>
+    <p>
+      <b>Background:</b> The <a href="https://en.wikipedia.org/wiki/Mandelbrot_set" target='_blank' rel='noopener noreferrer'>Mandelbrot set</a> is an example of a fractal that arises from a simple mapping on the complex plane:
+      <br>
+      <i>f<sub>c</sub></i>(<i>z</i>) = <i>z</i><sup>2</sup> + <i>c</i>
+      The Mandelbrot set is the set of all complex numbers <i>c</i> for which infinite iterative calls of this function do not diverge.  The boundary of this set is a fractal, in that it displays structure at all length-scales.
+    </p>
+    <p>
+      <b>Controls:</b>
+        <ul>
+          <li>Resolution: size of the hexagonally shaped cells into which the complex plane is divided</li>
+          <li>Iterations: number of times that the mapping is iterated before assuming that the mapping has not diverged</li>
+          <li>Magnification: number of times that the resolution has doubled</li>
+        </ul>
+      <b>Instructions:</b> After <tt>...herokuapp.com</tt> above you should type
+      <br>
+      <tt>/&langle;resolution&rangle;/&langle;iter&rangle;/&langle;mag&rangle;/&langle;center&rangle;</tt>, in which the inputs are defined as follows:
+      <ul>
+        <li>resolution: (approximate) number of cells between the center and the edge of the viewing area</li>
+        <li>iter: number of times that the mapping is allowed to iterate before a determination is made whether the particular value of <i>c</i> belongs in the set</li>
+        <li>mag: number of times that the magnification has doubled</li>
+        <li>center: real and imaginary parts (aka coordinates) of the complex number at the center of the viewing area</li>
+      </ul>
+      The easiest way to control this app, however, is via buttons.  For instance the button below generates the url <tt>...heroku.com/20/40/0/(0,0)</tt>.
+      <button id="render-mandelbrot-set">Render example.</button>
   </div>
+
+  <script>
+    let button = document.getElementById("render-mandelbrot-set");
+    const renderSet = () => {
+      window.location.href = "https://fractal-examples-e4144646641a.herokuapp.com/20/40/0/(0,0)";
+    };
+    button.addEventListener("click", e => renderSet());
+  </script>
 }
