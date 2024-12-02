@@ -88,13 +88,10 @@
 
       const newPath = (path, button) => {
         const prepath = "https://fractal-examples-e4144646641a.herokuapp.com";
+        // Weird errors resulted when I used a switch statement for following.
         if (button === "nxOverTwo") path.nxOverTwo *= 2;
-        if (button === "maxIter") {
-          path.maxIter *= 2;
-        }
-        if (button === "mag") {
-          path.mag++;
-        }
+        if (button === "maxIter") path.maxIter *= 2;
+        if (button === "mag") path.mag++;
         return `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
       };
 
