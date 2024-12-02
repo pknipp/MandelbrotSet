@@ -77,7 +77,7 @@
       let ys = rows.map(row => Number(row.getAttribute("id")));
 
       let path = {
-        nxOverTwo: @grid.nxOverTwo || 1,
+        nxOverTwo: @grid.nxOverTwo,
         maxIter: @grid.maxIter,
         mag: Number(svg.getAttribute("mag")),
         center: ["x", "y"].reduce((c, xy) => {
@@ -92,18 +92,14 @@
         if (button === "nxOverTwo") path.nxOverTwo *= 2;
         if (button === "maxIter") path.maxIter *= 2;
         if (button === "mag") path.mag++;
-        return window.location.href = `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
+        window.location.href = `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
       };
 
       let cellsButton = document.getElementById("increase-cells");
       let iterationButton = document.getElementById("increase-iterations");
 
-      cellsButton.addEventListener("click", e => {
-        newPath(path, "nxOverTwo");
-      });
-      iterationButton.addEventListener("click", e => {
-        newPath(path, "maxIter");
-      });
+      cellsButton.addEventListener("click", e => newPath(path, "nxOverTwo"));
+      iterationButton.addEventListener("click", e => newPath(path, "maxIter"));
       svg.addEventListener("click", e => {
         path.center = ["x", "y"].reduce((c, xy) => {
           c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
