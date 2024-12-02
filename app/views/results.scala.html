@@ -2,7 +2,7 @@
 
 @main {
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <div>Results for Mandelbrot set:</div>
+    <h3>Results for Mandelbrot set:</h3>
     <table border="1">
       <thead>
         <tr>
@@ -16,31 +16,27 @@
           <td># of hexagonal cells</td>
           <td>@(grid.numberOfCells)</td>
           <td>
-            <button id="increase-cells">quadruple</button>this
+            <button id="increase-cells">Quadruple</button>
+            this number.
           </td>
         </tr>
         <tr>
           <td>maximum # of iterations</td>
           <td>@(grid.maxIter)</td>
           <td>
-            <button
-              id="increase-iterations"
-            >
-              double
-            </button>
-            this
+            <button id="increase-iterations">Double</button>
+            this number.
           </td>
         </tr>
         <tr>
           <td>magnification</td>
           <td>@(grid.mag2)</td>
           <td>
-            Click spot in chart to zoom in.
+            Click spot on figure to zoom in.
           </td>
         </tr>
       </tbody>
     </table>
-    <br/>
     <br/>
     <svg
       width=@(2.0 * grid.size)

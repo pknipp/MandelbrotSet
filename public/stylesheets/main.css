@@ -4,6 +4,9 @@
     padding-bottom: 80px;
 }
 
-td {
-    padding: 10px;
+td, th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
