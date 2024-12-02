@@ -95,12 +95,14 @@
       let iterationButton = document.getElementById("increase-iterations");
 
       cellsButton.addEventListener("click", e => {
+        nxOverTwo *= 2;
         console.log("increase cells");
-        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo * 2}/${maxIter}/${mag + 1}/(${c.x},${c.y})`;
+        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${c.x},${c.y})`;
       });
       iterationButton.addEventListener("click", e => {
+        maxIter *= 2;
         console.log("increase iterations");
-        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter * 2}/${mag}/(${c.x},${c.y})`;
+        window.location.href = `https://fractal-examples-e4144646641a.herokuapp.com/${nxOverTwo}/${maxIter}/${mag}/(${c.x},${c.y})`;
       });
       svg.addEventListener("click", e => {
         const cNew = xys.reduce((cN, xy) => {
