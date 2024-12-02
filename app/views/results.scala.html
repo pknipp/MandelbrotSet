@@ -72,51 +72,51 @@
       </g>
     </svg>
     <script>
-      let svg = document.getElementById("svg");
-      let rows = Array.from(svg.getElementsByClassName("row"));
-      let ys = rows.map(row => Number(row.getAttribute("id")));
+      // let svg = document.getElementById("svg");
+      // let rows = Array.from(svg.getElementsByClassName("row"));
+      // let ys = rows.map(row => Number(row.getAttribute("id")));
 
-      let path = {
-        nxOverTwo: @grid.nxOverTwo,
-        maxIter: @grid.maxIter,
-        mag: Number(svg.getAttribute("mag")),
-        center: ["x", "y"].reduce((c, xy) => {
-          c[xy] = Number(svg.getAttribute(xy));
-          return c;
-        }, {}),
-      };
+      // let path = {
+        // nxOverTwo: @grid.nxOverTwo,
+        // maxIter: @grid.maxIter,
+        // mag: Number(svg.getAttribute("mag")),
+        // center: ["x", "y"].reduce((c, xy) => {
+          // c[xy] = Number(svg.getAttribute(xy));
+          // return c;
+        // }, {}),
+      // };
 
-      const newPath = (path, button) => {
-        const prePath = "https://fractal-examples-e4144646641a.herokuapp.com/";
-        switch (button) {
-          case "nxOverTwo":
-            path.nxOverTwo *= 2;
-          case "maxIter":
-            path.maxIter *= 2;
-          case "mag":
-            path.mag++;
-          default:
-            break;
-        };
-        return `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
-      }
+      // const newPath = (path, button) => {
+        // const prePath = "https://fractal-examples-e4144646641a.herokuapp.com/";
+        // switch (button) {
+          // case "nxOverTwo":
+            // path.nxOverTwo *= 2;
+          // case "maxIter":
+            // path.maxIter *= 2;
+          // case "mag":
+            // path.mag++;
+          // default:
+            // break;
+        // };
+        // return `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
+      // };
 
-      let cellsButton = document.getElementById("increase-cells");
-      let iterationButton = document.getElementById("increase-iterations");
-
-      cellsButton.addEventListener("click", e => {
-        window.location.href = newPath(path, "nxOverTwo");
-      });
-      iterationButton.addEventListener("click", e => {
-        window.location.href = newPath(path, "maxIter");
-      });
-      svg.addEventListener("click", e => {
-        path.center = ["x", "y"].reduce((c, xy) => {
-          c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
-          return c;
-        }, {});
-        window.location.href = newPath(path, "mag");
-      });
+      // let cellsButton = document.getElementById("increase-cells");
+      // let iterationButton = document.getElementById("increase-iterations");
+// 
+      // cellsButton.addEventListener("click", e => {
+        // window.location.href = newPath(path, "nxOverTwo");
+      // });
+      // iterationButton.addEventListener("click", e => {
+        // window.location.href = newPath(path, "maxIter");
+      // });
+      // svg.addEventListener("click", e => {
+        // path.center = ["x", "y"].reduce((c, xy) => {
+          // c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
+          // return c;
+        // }, {});
+        // window.location.href = newPath(path, "mag");
+      // });
     </script>
   </div>
 }
