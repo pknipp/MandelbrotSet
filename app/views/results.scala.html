@@ -89,9 +89,9 @@
       const newPath = (path, button) => {
         const prePath = "https://fractal-examples-e4144646641a.herokuapp.com/";
         switch (button) {
-          // case "nxOverTwo":
-            // path.nxOverTwo *= 2;
-            // break;
+          case "nxOverTwo":
+            path.nxOverTwo = path.nxOverTwo || 1 * 2;
+            break;
           // case "maxIter":
             // path.maxIter *= 2;
           // case "mag":
