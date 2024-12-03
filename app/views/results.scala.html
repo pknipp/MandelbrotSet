@@ -15,7 +15,8 @@
         <tbody>
           <tr>
             <td># of hexagonal cells</td>
-            <td>@(f"${grid.numberOfCells.toDouble}%.2e")</td>
+            <td>@(if (grid.mag2 > 999999) f"${grid.numberOfCells.toDouble}%.2e"
+              else Math.round(grid.numberOfCells))</td>
             <td>
               <button id="increase-cells">Quadruple</button>
               this number.
@@ -23,7 +24,8 @@
           </tr>
           <tr>
             <td>max # of iterations</td>
-            <td>@(grid.maxIter)</td>
+            <td>@(if (grid.maxIter > 999999) f"${grid.maxIter.toDouble}%.2e"
+              else Math.round(grid.maxIter))</td>
             <td>
               <button id="increase-iterations">Double</button>
               this number.
@@ -31,7 +33,8 @@
           </tr>
           <tr>
             <td>magnification</td>
-            <td>@(if (grid.mag2 > 999999) Math.round(grid.mag2) else grid.mag2)</td>
+            <td>@(if (grid.mag2 > 999999) f"${grid.mag2.toDouble}%.2e"
+              else Math.round(grid.mag2))</td>
             <td>
               Click spot on figure to zoom 2x.
             </td>
