@@ -1,7 +1,7 @@
 @(grid: Grid)
 
 @main {
-  <div style="display: flex; align-items: center; justify-content: space-evenly; align-items: center; padding-top: 50px; ">
+  <div style="display: flex; align-items: center; justify-content: space-evenly; align-items: center; padding-top: 20px; ">
     <div>
       <h3>Controls for displaying Mandelbrot set:</h3>
       <table border="1">
@@ -22,7 +22,7 @@
             </td>
           </tr>
           <tr>
-            <td>maximum # of iterations</td>
+            <td>max # of iterations</td>
             <td>@(grid.maxIter)</td>
             <td>
               <button id="increase-iterations">Double</button>
@@ -31,9 +31,9 @@
           </tr>
           <tr>
             <td>magnification</td>
-            <td>@(grid.mag2)</td>
+            <td>@(Math.round(grid.mag2))</td>
             <td>
-              Click spot on figure to zoom in.
+              Click spot on figure to zoom 2x.
             </td>
           </tr>
         </tbody>
