@@ -23,10 +23,7 @@
           </tr>
           <tr>
             <td>max # of iterations</td>
-            <td>@(grid.maxIter
-
-
-              )</td>
+            <td>@(grid.maxIter)</td>
             <td>
               <button id="increase-iterations">Double</button>
               this number.
@@ -34,7 +31,7 @@
           </tr>
           <tr>
             <td>magnification</td>
-            <td>@(Math.round(grid.mag2))</td>
+            <td>@(if (grid.mag2 > 999999) Math.round(grid.mag2) else grid.mag2)</td>
             <td>
               Click spot on figure to zoom 2x.
             </td>
