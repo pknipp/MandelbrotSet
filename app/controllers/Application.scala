@@ -32,7 +32,7 @@ class Complex(val x: Double, val y: Double) {
   }
   def calcIterNo(maxIter: Int): Int = {
     var n = 0
-    var z = new Complex(0, 0)
+    var z = new Complex(-0.5251993, -0.5251993)//(0, 0)
     while (n < maxIter && z.magSq < 4) {
       z = iter(z)
       n += 1
