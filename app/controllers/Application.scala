@@ -120,6 +120,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       case e: NumberFormatException => {
         messages += nxOverTwoStr + stdError
       }
+
     }
     var maxIter = 0
     try {
@@ -128,6 +129,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       case e: NumberFormatException => {
         messages += maxIterStr + stdError
       }
+      return Ok(views.html.error(messages.toArray))
     }
     var mag = 0
     try {
