@@ -111,12 +111,12 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
   }
 
   def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
-    val nxOverTwo = try {
-      nxOverTwoStr.toInt
+    var nxOverTwo: Int
+    try {
+      nxOverTwo = nxOverTwoStr.toInt
     } catch {
       case e: NumberFormatException => {
         println("error in nxOverTwoStr")
-        0
       }// Or handle the error differently
     }
     val maxIter = try {
