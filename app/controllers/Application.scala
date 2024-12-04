@@ -110,7 +110,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
+  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     var stdError = " cannot be parsed as a number."
     val messages: ArrayBuffer[String] = ArrayBuffer()
     var nxOverTwo = 0
