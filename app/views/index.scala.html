@@ -33,21 +33,46 @@
       The set contains all complex numbers <i>c</i> for which infinite iterative calls of this function do not diverge.  These are indicated as black cells by this app.  The boundary of this set is fractal because it displays the same structure at all length-scales.
     </p>
     <p>
-      <b>Controls:</b>
-      <ul>
-        <li>resolution: (approximate) number of hexagonally shaped cells along the radius of the viewing area of the complex plane</li>
-        <li>iterations: number of times that the mapping is iterated before determining if it has diverged (ie should be excluded the set)</li>
-        <li>magnification: number of times that the user has halved the viewing area</li>
-        <li>center: real and imaginary parts (aka coordinates) of the complex number at the center of the viewing area</li>
-      </ul>
-      Note that increasing either of the first two numbers increases the computational workload required. If adjusting any of these seems to kill the app, click your browser's back arrow, cross your fingers, and try again.
+
     </p>
     <p>
       <b>Instructions:</b> After <tt>...herokuapp.com</tt> above you should type
       <br>
-      <tt>/&langle;resolution&rangle;/&langle;iterations&rangle;/&langle;magnification&rangle;/&langle;center&rangle;</tt>, in which the inputs are defined above. That said, the easiest way to control this app, however, is via buttons.  For instance the button below generates the url <tt>...heroku.com/20/40/0/(0,0)</tt>.
+      <tt>/&langle;resolution&rangle;/&langle;iterations&rangle;/&langle;magnification&rangle;/&langle;center&rangle;</tt>
+      <br>
+      in which the inputs are defined below. That said, the easiest way to control this app, however, is via buttons.  For instance the button below generates the url <tt>...heroku.com/20/40/0/(0,0)</tt>.
       <br>
       <button id="render-mandelbrot-set">Render example.</button>
+      <table border="1"></table>
+        <theader>
+          <tr>
+            <th>control</th>
+            <th>description</th>
+            <th>notes/advice</th>
+          </tr>
+        </theader>
+        <tbody>
+          <tr>
+            <td>resolution</td>
+            <td>(approximate) number of hexagonally shaped cells ("hexels") along the radius of the viewing area of the complex plane</td>
+            <td>Increase this if the pixels' hexagonal shape is noticeable.</td>
+          </tr>
+          <tr>
+            <td>iterations</td>
+            <td>number of times that the mapping is iterated before determining if it has diverged (ie should be excluded the set)</td>
+            <td>Increase this if you notice a lot of red hexels near the boundary.</td>
+          <tr>
+            <td>magnification</td>
+            <td>number of times that the user has halved the viewing area</td>
+            <td rowspan="2">Both of these are adjusted whenever you click on a spot inside the viewing area.</td>
+          </tr>
+          <tr>
+            <td>center</td>
+            <td>real and imaginary parts (aka coordinates) of the complex number at the center of the viewing area</td>
+          </tr>
+        </tbody>
+      </table>
+      Note that increasing either of the first two numbers increases the computational workload required. If adjusting any of these seems to kill the app, click your browser's back arrow, refresh the browser, cross your fingers, and try again.
     </p>
   </div>
 
