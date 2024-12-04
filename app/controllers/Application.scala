@@ -111,7 +111,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
   }
 
   def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
-    var nxOverTwo: Int
+    var nxOverTwo = 0
     try {
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
