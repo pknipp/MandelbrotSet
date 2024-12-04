@@ -25,11 +25,12 @@
       </a>
     </p>
     <p>
-      <b>Background:</b> This <a href="https://en.wikipedia.org/wiki/Mandelbrot_set" target='_blank' rel='noopener noreferrer'>set</a> is an two-dimensional example of a <a href="https://en.wikipedia.org/wiki/Fractal" target='_blank' rel='noopener noreferrer'>fractal</a>. It arises from a simple mapping on the complex plane:
+      <b>Background:</b> The <a href="https://en.wikipedia.org/wiki/Mandelbrot_set" target='_blank' rel='noopener noreferrer'>Mandelbrot set</a> is an two-dimensional example of a <a href="https://en.wikipedia.org/wiki/Fractal" target='_blank' rel='noopener noreferrer'>fractal</a>. It arises from a simple
+      <a href="https://en.wikipedia.org/wiki/Map_(mathematics)" target='_blank' rel='noopener noreferrer'>mapping</a> on the <a href="https://en.wikipedia.org/wiki/Complex_plane" target='_blank' rel='noopener noreferrer'>complex plane</a>:
       <p align=center>
         <i>f<sub>c</sub></i>(<i>z</i>) = <i>z</i><sup>2</sup> + <i>c</i>
       </p>
-      The set contains all complex numbers <i>c</i> for which infinite iterative calls of this function do not diverge.  These numbers are indicated as black cells by this app.  The boundary of this set is fractal because it displays "self-similarity", ie the same structure at all length-scales.
+      The set contains all complex numbers <i>c</i> for which infinite iterative calls of this function do not diverge.  These numbers are indicated as black cells by this app.  The boundary of this set is fractal because it displays <a href="https://en.wikipedia.org/wiki/Self-similarity" target='_blank' rel='noopener noreferrer'>self-similarity</a>, ie the same structure at all length-scales.
     </p>
     <p>
 
@@ -50,21 +51,21 @@
         </theader>
         <tbody>
           <tr>
-            <td>resolution</td>
+            <td><tt>resolution</tt></td>
             <td>(approximate) number of hexagonally shaped cells ("hexels") along the radius of the viewing area of the complex plane</td>
             <td>Increase this if the pixels' hexagonal shape is noticeable.</td>
           </tr>
           <tr>
-            <td>iterations</td>
+            <td><tt>iterations</tt></td>
             <td>number of times that the mapping is iterated before determining if it has diverged (ie should be excluded the set)</td>
             <td>Increase this if you notice a lot of red hexels near the boundary.</td>
           <tr>
-            <td>magnification</td>
+            <td><tt>magnification</tt></td>
             <td>number of times that the user has halved the viewing area</td>
             <td rowspan="2">Each of these is adjusted whenever you click a spot inside the viewing area.</td>
           </tr>
           <tr>
-            <td>center</td>
+            <td><tt>center</tt></td>
             <td>real and imaginary parts (aka coordinates) of the complex number at the center of the viewing area</td>
           </tr>
         </tbody>
@@ -76,9 +77,6 @@
         </li>
         <li>
           Simply hit your browser's back arrow to decrease any of these numbers except for <tt>center</tt>.
-        </li>
-        <li>
-
         </li>
     </p>
   </div>
