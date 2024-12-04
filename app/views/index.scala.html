@@ -2,7 +2,7 @@
 
 @main {
   <div style="padding-top: 20px; padding-left: 40px; padding-right: 40px;">
-    <h3><p align=center>(WIP) Fractals</p></h3>
+    <h3><p align=center>(WIP) Mandelbrot set</p></h3>
     <p align=center>
       <a href="https://pknipp.github.io/math">Return</a>
       to the Math APIs page.
@@ -25,12 +25,11 @@
       </a>
     </p>
     <p>
-      <b>Background:</b> The <a href="https://en.wikipedia.org/wiki/Mandelbrot_set" target='_blank' rel='noopener noreferrer'>Mandelbrot set</a> is an example of a
-      <a href="https://en.wikipedia.org/wiki/Fractal" target='_blank' rel='noopener noreferrer'>fractal</a> that arises from a simple mapping on the complex plane:
+      <b>Background:</b> This <a href="https://en.wikipedia.org/wiki/Mandelbrot_set" target='_blank' rel='noopener noreferrer'>set</a> is an two-dimensional example of a <a href="https://en.wikipedia.org/wiki/Fractal" target='_blank' rel='noopener noreferrer'>fractal</a>. It arises from a simple mapping on the complex plane:
       <p align=center>
         <i>f<sub>c</sub></i>(<i>z</i>) = <i>z</i><sup>2</sup> + <i>c</i>
       </p>
-      The set contains all complex numbers <i>c</i> for which infinite iterative calls of this function do not diverge.  These are indicated as black cells by this app.  The boundary of this set is fractal because it displays the same structure at all length-scales.
+      The set contains all complex numbers <i>c</i> for which infinite iterative calls of this function do not diverge.  These numbers are indicated as black cells by this app.  The boundary of this set is fractal because it displays "self-similarity", ie the same structure at all length-scales.
     </p>
     <p>
 
@@ -40,9 +39,7 @@
       <br>
       <tt>/&langle;resolution&rangle;/&langle;iterations&rangle;/&langle;magnification&rangle;/&langle;center&rangle;</tt>
       <br>
-      in which the inputs are defined below. That said, the easiest way to control this app, however, is via buttons.  For instance the button below generates the url <tt>...heroku.com/20/40/0/(0,0)</tt>.
-      <br>
-      <button id="render-mandelbrot-set">Render example.</button>
+      in which the inputs are defined below. That said, the easiest way to control this app, however, is via buttons.  For instance <button id="render-mandelbrot-set">this button</button> sets the url to <tt>...heroku.com/20/40/0/(0,0)</tt>.
       <table border="1">
         <theader>
           <tr>
@@ -64,7 +61,7 @@
           <tr>
             <td>magnification</td>
             <td>number of times that the user has halved the viewing area</td>
-            <td rowspan="2">Both of these are adjusted whenever you click on a spot inside the viewing area.</td>
+            <td rowspan="2">Each of these is adjusted whenever you click a spot inside the viewing area.</td>
           </tr>
           <tr>
             <td>center</td>
@@ -72,7 +69,17 @@
           </tr>
         </tbody>
       </table>
-      Note that increasing either of the first two numbers increases the computational workload required. If adjusting any of these seems to kill the app, click your browser's back arrow, refresh the browser, cross your fingers, and try again.
+      general notes:
+      <ul>
+        <li>
+          Increasing either of the first two numbers increases the computational workload. If adjusting either of these seems to kill the app, click your browser's back arrow, refresh the browser, cross your fingers, and try again.
+        </li>
+        <li>
+          Simply hit your browser's back arrow to decrease any of these numbers except for <tt>center</tt>.
+        </li>
+        <li>
+
+        </li>
     </p>
   </div>
 
