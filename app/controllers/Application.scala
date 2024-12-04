@@ -117,7 +117,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
       case e: NumberFormatException => {
-        messages += nxOverTwoStr + " cannot be parsed as a number."
+        messages += (nxOverTwoStr + " cannot be parsed as a number.")
       }
     }
     val maxIter = try {
