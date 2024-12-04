@@ -139,30 +139,32 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     }
     val messages = messagesBuffer.toArray
     if (!messages.isEmpty) {
-      println("# of errors = ", messages.length)
-      println(messages(0))
       Ok(views.html.error(messages))
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
-      val yStr = cArr(1)
-      val x = try {
-        xStr.substring(1).toDouble
-      } catch {
-        case e: NumberFormatException => 0.0 // Or handle the error differently
+      if (xStr.length != 2) {
+        Ok(views.html.error(["The center " + cStr + "seems to have " + xStr.length.toString + " coordinates instead of 2."]))
+      } else {
+        val yStr = cArr(1)
+        val x = try {
+          xStr.substring(1).toDouble
+        } catch {
+          case e: NumberFormatException => 0.0 // Or handle the error differently
+        }
+        val y = try {
+          yStr.substring(0, yStr.length - 1).toDouble
+        } catch {
+          case e: NumberFormatException => 0.0 // Or handle the error differently
+        }
+        Ok(views.html.results(new Grid(
+          400.0,
+          nxOverTwo,
+          maxIter,
+          mag,
+          new Complex(x, y),
+        )))
       }
-      val y = try {
-        yStr.substring(0, yStr.length - 1).toDouble
-      } catch {
-        case e: NumberFormatException => 0.0 // Or handle the error differently
-      }
-      Ok(views.html.results(new Grid(
-        400.0,
-        nxOverTwo,
-        maxIter,
-        mag,
-        new Complex(x, y),
-      )))
     }
   }
 
