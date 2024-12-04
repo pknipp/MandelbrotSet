@@ -138,7 +138,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       }
     }
     val messages = messagesBuffer.toArray
-    if (messages.length) {
+    if (messages.length > 0) {
       println("# of errors = ", messages.length)
       println(messages(0))
     } else {
