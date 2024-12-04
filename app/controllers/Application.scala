@@ -125,7 +125,9 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     try {
       maxIter = maxIterStr.toInt
     } catch {
-      messagesBuffer += maxIterStr + stdError
+      case e: NumberFormatException => {
+        messagesBuffer += maxIterStr + stdError
+      }
     }
     val mag = try {
       magStr.toInt
