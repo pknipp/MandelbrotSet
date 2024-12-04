@@ -129,34 +129,40 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         messagesBuffer += maxIterStr + stdError
       }
     }
-    val mag = try {
-      magStr.toInt
+    var mag = 0
+    try {
+      mag = magStr.toInt
     } catch {
-      case e: NumberFormatException => 0 // Or handle the error differently
+      case e: NumberFormatException => {
+        messagesBuffer += magStr + stdError
+      }
     }
     val messages = messagesBuffer.toArray
-    println("# of errors = ", messages.length)
-    println(messages(0))
-    val cArr = cStr.replaceAll("\\s+", "").split(",")
-    val xStr = cArr(0)
-    val yStr = cArr(1)
-    val x = try {
-      xStr.substring(1).toDouble
-    } catch {
-      case e: NumberFormatException => 0.0 // Or handle the error differently
+    if (messages.length) {
+      println("# of errors = ", messages.length)
+      println(messages(0))
+    } else {
+      val cArr = cStr.replaceAll("\\s+", "").split(",")
+      val xStr = cArr(0)
+      val yStr = cArr(1)
+      val x = try {
+        xStr.substring(1).toDouble
+      } catch {
+        case e: NumberFormatException => 0.0 // Or handle the error differently
+      }
+      val y = try {
+        yStr.substring(0, yStr.length - 1).toDouble
+      } catch {
+        case e: NumberFormatException => 0.0 // Or handle the error differently
+      }
+      Ok(views.html.results(new Grid(
+        400.0,
+        nxOverTwo,
+        maxIter,
+        mag,
+        new Complex(x, y),
+      )))
     }
-    val y = try {
-      yStr.substring(0, yStr.length - 1).toDouble
-    } catch {
-      case e: NumberFormatException => 0.0 // Or handle the error differently
-    }
-    Ok(views.html.results(new Grid(
-      400.0,
-      nxOverTwo,
-      maxIter,
-      mag,
-      new Complex(x, y),
-    )))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
