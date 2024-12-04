@@ -144,7 +144,8 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
       if (xStr.length != 2) {
-        Ok(views.html.error(["The center " + cStr + "seems to have " + xStr.length.toString + " coordinates instead of 2."]))
+        messagesBuffer += "The center " + cStr + "seems to have " + xStr.length.toString + " coordinates instead of 2."
+        Ok(views.html.error(messagesBuffer.toArray))
       } else {
         val yStr = cArr(1)
         val x = try {
