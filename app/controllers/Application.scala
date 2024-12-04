@@ -111,19 +111,21 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
   }
 
   def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
+    var stdError = " cannot be parsed as a number."
     val messagesBuffer: ArrayBuffer[String] = ArrayBuffer()
     var nxOverTwo = 0
     try {
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
       case e: NumberFormatException => {
-        messagesBuffer += (nxOverTwoStr + " cannot be parsed as a number.")
-      } 
+        messagesBuffer += nxOverTwoStr + stdError
+      }
     }
-    val maxIter = try {
-      maxIterStr.toInt
+    var maxIter = 0
+    try {
+      maxIter = maxIterStr.toInt
     } catch {
-      case e: NumberFormatException => 0 // Or handle the error differently
+      messagesBuffer += maxIterStr + stdError
     }
     val mag = try {
       magStr.toInt
@@ -131,7 +133,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       case e: NumberFormatException => 0 // Or handle the error differently
     }
     val messages = messagesBuffer.toArray
-    println(messages)
+    println("# of errors = ", messages.length)
     println(messages(0))
     val cArr = cStr.replaceAll("\\s+", "").split(",")
     val xStr = cArr(0)
