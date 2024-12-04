@@ -112,13 +112,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
 
   def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String) = Action {
     var stdError = " cannot be parsed as a number."
-    val messagesBuffer: ArrayBuffer[String] = ArrayBuffer()
+    val messages: ArrayBuffer[String] = ArrayBuffer()
     var nxOverTwo = 0
     try {
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
       case e: NumberFormatException => {
-        messagesBuffer += nxOverTwoStr + stdError
+        messages += nxOverTwoStr + stdError
       }
     }
     var maxIter = 0
@@ -126,7 +126,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       maxIter = maxIterStr.toInt
     } catch {
       case e: NumberFormatException => {
-        messagesBuffer += maxIterStr + stdError
+        messages += maxIterStr + stdError
       }
     }
     var mag = 0
@@ -134,18 +134,17 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       mag = magStr.toInt
     } catch {
       case e: NumberFormatException => {
-        messagesBuffer += magStr + stdError
+        messages += magStr + stdError
       }
     }
-    val messages = messagesBuffer.toArray
     if (!messages.isEmpty) {
-      Ok(views.html.error(messages))
+      Ok(views.html.error(messages.toArray))
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
       if (xStr.length != 2) {
-        messagesBuffer += "The center " + cStr + "seems to have " + xStr.length.toString + " coordinates instead of 2."
-        Ok(views.html.error(messagesBuffer.toArray))
+        messages += "The center " + cStr + "seems to have " + xStr.length.toString + " coordinates instead of 2."
+        Ok(views.html.error(messages.toArray))
       } else {
         val yStr = cArr(1)
         val x = try {
