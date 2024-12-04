@@ -141,7 +141,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       println("# of errors = ", messages.length)
       println(messages(0))
-      Ok(views.html.error(messages Grid))
+      Ok(views.html.error(messages))
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
