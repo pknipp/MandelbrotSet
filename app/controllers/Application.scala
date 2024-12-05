@@ -135,7 +135,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       BadRequest(views.html.error(messages.toArray))
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
-      if
       val xStr = cArr(0)
       if (cArr.length != 2) {
         messages += "The center " + cStr + " seems to have " + cArr.length.toString + " coordinates instead of 2."
