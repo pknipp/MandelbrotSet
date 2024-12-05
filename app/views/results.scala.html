@@ -94,7 +94,7 @@
         if (button === "nxOverTwo") path.nxOverTwo *= 2;
         if (button === "maxIter") path.maxIter *= 2;
         if (button === "mag") path.mag++;
-        window.location.href = `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/(${path.center.x},${path.center.y})`;
+        window.location.href = `${prepath}/${path.nxOverTwo}/${path.maxIter}/${path.mag}/${path.center.x},${path.center.y}`;
       };
 
       let cellsButton = document.getElementById("increase-cells");
