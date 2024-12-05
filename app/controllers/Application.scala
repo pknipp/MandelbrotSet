@@ -111,25 +111,26 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
   }
 
   def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    var stdError = " cannot be parsed as a number."
+    val error1 = " cannot be parsed as a number."
+    val error2 = " cannot be parsed as an integer."
     val messages: ArrayBuffer[String] = ArrayBuffer()
     var nxOverTwo = 0
     try {
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
-      case e: NumberFormatException => messages += nxOverTwoStr + stdError
+      case e: NumberFormatException => messages += nxOverTwoStr + error2
     }
     var maxIter = 0
     try {
       maxIter = maxIterStr.toInt
     } catch {
-      case e: NumberFormatException => messages += maxIterStr + stdError
+      case e: NumberFormatException => messages += maxIterStr + error2
     }
     var mag = 0
     try {
       mag = magStr.toInt
     } catch {
-      case e: NumberFormatException => messages += magStr + stdError
+      case e: NumberFormatException => messages += magStr + error2
     }
     if (!messages.isEmpty) {
       BadRequest(views.html.error(messages.toArray))
@@ -145,13 +146,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         try {
           x = xStr.toDouble
         } catch {
-          case e: NumberFormatException => messages += xStr + stdError
+          case e: NumberFormatException => messages += xStr + error1
         }
         var y = 0.0
         try {
           y = yStr.toDouble
         } catch {
-          case e: NumberFormatException => messages += yStr + stdError
+          case e: NumberFormatException => messages += yStr + error1
         }
         if (!messages.isEmpty) {
           BadRequest(views.html.error(messages.toArray))
