@@ -119,7 +119,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     } catch {
       case e: NumberFormatException => {
         messages += nxOverTwoStr + stdError
-        return Ok(views.html.error(messages.toArray))
+        return Action { Ok(views.html.error(messages.toArray)) }
       }
     }
     var maxIter = 0
