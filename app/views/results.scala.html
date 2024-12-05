@@ -61,7 +61,7 @@
             @for(point <- row) {
               <g
                 transform="translate(@point.x, 0) scale(@(grid.size / grid.nxOverTwo / 2))"
-                class=@point.x
+                class=@(point.x)
               >
                 <path
                   d="M0,1.1547L1,0.57735v-1.1547L0,-1.1547L-1,-0.57735,v1.1547,L0,1.1547"
@@ -82,11 +82,11 @@
       const tooltip = document.getElementById("tooltip");
       pathEls.forEach(pathEl => {
         pathEl.addEventListener("mouseenter", function(event) {
-          event.stopPropagation();
           // Calculate the position of the tooltip relative to the mouse cursor
           tooltip.style.left = (event.clientX + 10) + "px";
           tooltip.style.top = (event.clientY - 10) + "px";
-          tooltip.textContent = "This is a tooltip"; // Replace with your desired tooltip text
+          const className = pathEl.getAttribute("class");
+          tooltip.textContent = `x here equals ${className}`; // Replace with your desired tooltip text
           tooltip.style.visibility = "visible";
         });
         pathEl.addEventListener("mouseleave", function() {
