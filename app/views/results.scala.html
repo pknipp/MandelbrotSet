@@ -78,7 +78,7 @@
       let svg = document.getElementById("svg");
       let rows = Array.from(svg.getElementsByClassName("row"));
       let ys = rows.map(row => Number(row.getAttribute("id")));
-      const pathEls = Array.from(document.getElementByTagName("path"));
+      const pathEls = Array.from(document.getElementsByTagName("path"));
       const tooltip = document.getElementById("tooltip");
       pathEls.forEach(pathEl => {
         pathEl.addEventListener("mouseenter", function(event) {
