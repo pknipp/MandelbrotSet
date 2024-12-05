@@ -155,7 +155,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
              messages += xStr + stdError
           }
         }
-        val y = 0.0
+        var y = 0.0
         try {
           y = yStr.substring(0, yStr.length - 1).toDouble
         } catch {
