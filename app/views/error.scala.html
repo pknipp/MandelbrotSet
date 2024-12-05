@@ -1,5 +1,10 @@
 @(messages: Array[String])
 
 @main {
-    <td>Hello error</td>
+    <h3>Error</h3>
+    <ul>
+        @for(message <- messages) {
+            <li>@message</li>
+        }
+    </ul>
 }
