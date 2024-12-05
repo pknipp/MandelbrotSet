@@ -135,10 +135,11 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       BadRequest(views.html.error(messages.toArray))
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
+      if
       val xStr = cArr(0)
-      if (xStr.length != 2) {
-        messages += "The center " + cStr + " seems to have " + xStr.length.toString + " coordinates instead of 2."
-        Ok(views.html.error(messages.toArray))
+      if (cArr.length != 2) {
+        messages += "The center " + cStr + " seems to have " + cArr.length.toString + " coordinates instead of 2."
+        BadRequest(views.html.error(messages.toArray))
       } else {
         val yStr = cArr(1)
         var x = 0.0
@@ -154,7 +155,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
           case e: NumberFormatException => messages += yStr + stdError
         }
         if (!messages.isEmpty) {
-          Ok(views.html.error(messages.toArray))
+          BadRequest(views.html.error(messages.toArray))
         } else {
           Ok(views.html.results(new Grid(
             400.0,
