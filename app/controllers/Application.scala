@@ -139,7 +139,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     }
     if (!messages.isEmpty) {
       Ok(views.html.error(messages.toArray))
-      // return Action { Ok(views.html.error(messages.toArray)) }
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
@@ -148,23 +147,33 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         Ok(views.html.error(messages.toArray))
       } else {
         val yStr = cArr(1)
-        val x = try {
-          xStr.substring(1).toDouble
+        var x = 0.0
+        try {
+          x = xStr.substring(1).toDouble
         } catch {
-          case e: NumberFormatException => 0.0 // Or handle the error differently
+          case e: NumberFormatException => {
+             messages += xStr + stdError
+          }
         }
-        val y = try {
-          yStr.substring(0, yStr.length - 1).toDouble
+        val y = 0.0
+        try {
+          y = yStr.substring(0, yStr.length - 1).toDouble
         } catch {
-          case e: NumberFormatException => 0.0 // Or handle the error differently
+          case e: NumberFormatException => {
+             messages += yStr + stdError
+          }
         }
-        Ok(views.html.results(new Grid(
-          400.0,
-          nxOverTwo,
-          maxIter,
-          mag,
-          new Complex(x, y),
-        )))
+        if (!messages.isEmpty) {
+          Ok(views.html.error(messages.toArray))
+        } else {
+          Ok(views.html.results(new Grid(
+            400.0,
+            nxOverTwo,
+            maxIter,
+            mag,
+            new Complex(x, y),
+          )))
+        }
       }
     }
   }
