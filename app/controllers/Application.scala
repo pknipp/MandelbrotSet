@@ -119,7 +119,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     } catch {
       case e: NumberFormatException => {
         messages += nxOverTwoStr + stdError
-        return Action { Ok(views.html.error(messages.toArray)) }
       }
     }
     var maxIter = 0
@@ -139,7 +138,8 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       }
     }
     if (!messages.isEmpty) {
-      Ok(views.html.error(messages.toArray))
+      // Ok(views.html.error(messages.toArray))
+      return Action { Ok(views.html.error(messages.toArray)) }
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
