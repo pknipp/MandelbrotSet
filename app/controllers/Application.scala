@@ -117,9 +117,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     try {
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
-      case e: NumberFormatException => {
-        messages += nxOverTwoStr + stdError
-      }
+      case e: NumberFormatException => messages += nxOverTwoStr + stdError
     }
     var maxIter = 0
     try {
