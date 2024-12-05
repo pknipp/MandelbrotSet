@@ -82,6 +82,7 @@
       const tooltip = document.getElementById("tooltip");
       pathEls.forEach(pathEl => {
         pathEl.addEventListener("mouseenter", function(event) {
+          event.stopPropagation();
           // Calculate the position of the tooltip relative to the mouse cursor
           tooltip.style.left = (event.clientX + 10) + "px";
           tooltip.style.top = (event.clientY - 10) + "px";
