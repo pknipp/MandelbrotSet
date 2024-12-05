@@ -123,25 +123,21 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     try {
       maxIter = maxIterStr.toInt
     } catch {
-      case e: NumberFormatException => {
-        messages += maxIterStr + stdError
-      }
+      case e: NumberFormatException => messages += maxIterStr + stdError
     }
     var mag = 0
     try {
       mag = magStr.toInt
     } catch {
-      case e: NumberFormatException => {
-        messages += magStr + stdError
-      }
+      case e: NumberFormatException => messages += magStr + stdError
     }
     if (!messages.isEmpty) {
-      Ok(views.html.error(messages.toArray))
+      BadRequest(views.html.error(messages.toArray))
     } else {
       val cArr = cStr.replaceAll("\\s+", "").split(",")
       val xStr = cArr(0)
       if (xStr.length != 2) {
-        messages += "The center " + cStr + "seems to have " + xStr.length.toString + " coordinates instead of 2."
+        messages += "The center " + cStr + " seems to have " + xStr.length.toString + " coordinates instead of 2."
         Ok(views.html.error(messages.toArray))
       } else {
         val yStr = cArr(1)
@@ -149,17 +145,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         try {
           x = xStr.substring(1).toDouble
         } catch {
-          case e: NumberFormatException => {
-             messages += xStr + stdError
-          }
+          case e: NumberFormatException => messages += xStr + stdError
         }
         var y = 0.0
         try {
           y = yStr.substring(0, yStr.length - 1).toDouble
         } catch {
-          case e: NumberFormatException => {
-             messages += yStr + stdError
-          }
+          case e: NumberFormatException => messages += yStr + stdError
         }
         if (!messages.isEmpty) {
           Ok(views.html.error(messages.toArray))
