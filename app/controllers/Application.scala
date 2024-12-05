@@ -143,13 +143,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         val yStr = cArr(1)
         var x = 0.0
         try {
-          x = xStr.substring(1).toDouble
+          x = xStr.toDouble
         } catch {
           case e: NumberFormatException => messages += xStr + stdError
         }
         var y = 0.0
         try {
-          y = yStr.substring(0, yStr.length - 1).toDouble
+          y = yStr.toDouble
         } catch {
           case e: NumberFormatException => messages += yStr + stdError
         }
