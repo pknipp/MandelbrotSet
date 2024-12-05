@@ -1,10 +1,12 @@
 @(messages: Array[String])
 
 @main {
-    <h3>Error</h3>
-    <ul>
-        @for(message <- messages) {
-            <li>@message</li>
-        }
-    </ul>
+    <div style="padding: 10px;">
+        <h3>Error(s)</h3>
+        <ul>
+            @for(message <- messages) {
+                <li>@message</li>
+            }
+        </ul>
+    </div>
 }
