@@ -89,7 +89,7 @@
           tooltip.style.top = (event.clientY - 10) + "px";
           const x = pathEl.getAttribute("x");
           const y = pathEl.getAttribute("y");
-          tooltip.textContent = `z = (${x}, ${y})`;
+          tooltip.textContent = `z = (${x}, ${y}) \n 2nd linear`;
           tooltip.style.visibility = "visible";
         });
         pathEl.addEventListener("mouseleave", function() {
