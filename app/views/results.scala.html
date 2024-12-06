@@ -69,6 +69,7 @@
                   stroke-width="0"
                   x=@(grid.fromDom(point).x)
                   y=@(grid.fromDom(point).y)
+                  iter=@(point.iter)
                 />
               </g>
             }
@@ -89,7 +90,8 @@
           tooltip.style.top = (event.clientY - 10) + "px";
           const x = pathEl.getAttribute("x");
           const y = pathEl.getAttribute("y");
-          tooltip.textContent = `z = (${x}, ${y}) \n 2nd line`;
+          const iter = pathEl.getAttribute("iter");
+          tooltip.textContent = `z: (${x}, ${y}) \nNumber of iterations: ${iter}`;
           tooltip.style.visibility = "visible";
         });
         pathEl.addEventListener("mouseleave", function() {
