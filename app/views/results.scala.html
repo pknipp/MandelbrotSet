@@ -88,7 +88,9 @@
           // Calculate the position of the tooltip relative to the mouse cursor
           tooltip.style.left = (event.clientX + 10) + "px";
           tooltip.style.top = (event.clientY - 10) + "px";
-          const [x, y, iter] = ["x", "y", "iter"].map(str => pathEl.getAttribute(str));
+          const [x, y, iter] = ["x", "y", "iter"].map(
+            str => Number(pathEl.getAttribute(str)),
+          );
           tooltip.textContent = `z: (${x.toFixed(5)}, ${y.toFixed(5)}) \nNumber of iterations: ${Number(iter) || @grid.maxIter}`;
           tooltip.style.visibility = "visible";
         });
