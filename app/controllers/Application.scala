@@ -113,27 +113,29 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val error1 = " cannot be parsed as a number."
-    val error2 = " cannot be parsed as an integer."
+  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>;
+    val error0 = "The url fragment "
+    val error1 = " cannot be parsed as "
+    val errorInteger = error1 + " an integer."
+    val errorNumber = error1 + " a number."
     val messages: ArrayBuffer[String] = ArrayBuffer()
     var nxOverTwo = 0
     try {
       nxOverTwo = nxOverTwoStr.toInt
     } catch {
-      case e: NumberFormatException => messages += nxOverTwoStr + error2
+      case e: NumberFormatException => messages += error0 + nxOverTwoStr + errorInteger
     }
     var maxIter = 0
     try {
       maxIter = maxIterStr.toInt
     } catch {
-      case e: NumberFormatException => messages += maxIterStr + error2
+      case e: NumberFormatException => messages += error0 + maxIterStr + errorInteger
     }
     var mag = 0
     try {
       mag = magStr.toInt
     } catch {
-      case e: NumberFormatException => messages += magStr + error2
+      case e: NumberFormatException => messages += error0 + magStr + errorInteger
     }
     if (!messages.isEmpty) {
       BadRequest(views.html.error(messages.toArray))
@@ -144,18 +146,18 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         messages += "The center " + cStr + " seems to have " + cArr.length.toString + " coordinates instead of 2."
         BadRequest(views.html.error(messages.toArray))
       } else {
-        val yStr = cArr(1)
         var x = 0.0
         try {
           x = xStr.toDouble
         } catch {
-          case e: NumberFormatException => messages += xStr + error1
+          case e: NumberFormatException => messages += error0 + xStr + errorNumber
         }
+        val yStr = cArr(1)
         var y = 0.0
         try {
           y = yStr.toDouble
         } catch {
-          case e: NumberFormatException => messages += yStr + error1
+          case e: NumberFormatException => messages += error0 + yStr + errorNumber
         }
         if (!messages.isEmpty) {
           BadRequest(views.html.error(messages.toArray))
