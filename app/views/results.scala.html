@@ -91,6 +91,7 @@
           const x = pathEl.getAttribute("x");
           const y = pathEl.getAttribute("y");
           const iter = pathEl.getAttribute("iter");
+          console.log("maxIter = ", @grid.maxIter);
           tooltip.textContent = `z: (${x}, ${y}) \nNumber of iterations: ${iter || @grid.maxIter}`;
           tooltip.style.visibility = "visible";
         });
