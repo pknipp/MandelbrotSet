@@ -165,8 +165,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
 
   def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     val url = new Url(nxOverTwoStr, maxIterStr, magStr, cStr)
-    url.parse
-    val messages = url.getMessages
+    val messages = url.getMessages()
     if (!messages.isEmpty) {
       BadRequest(views.html.error(messages))
     } else {
