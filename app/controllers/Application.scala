@@ -163,64 +163,20 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     Ok(views.html.index())
   }
 
-  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>;
-    val error0 = "The url fragment "
-    val error1 = " cannot be parsed as "
-    val errorInteger = error1 + " an integer."
-    val errorNumber = error1 + " a number."
-    val messages: ArrayBuffer[String] = ArrayBuffer()
-    var nxOverTwo = 0
-    try {
-      nxOverTwo = nxOverTwoStr.toInt
-    } catch {
-      case e: NumberFormatException => messages += error0 + nxOverTwoStr + errorInteger
-    }
-    var maxIter = 0
-    try {
-      maxIter = maxIterStr.toInt
-    } catch {
-      case e: NumberFormatException => messages += error0 + maxIterStr + errorInteger
-    }
-    var mag = 0
-    try {
-      mag = magStr.toInt
-    } catch {
-      case e: NumberFormatException => messages += error0 + magStr + errorInteger
-    }
+  def results(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val url = new Url(nxOverTwoStr, maxIterStr, magStr, cStr)
+    url.parse
+    val messages = url.getMessages
     if (!messages.isEmpty) {
-      BadRequest(views.html.error(messages.toArray))
+      BadRequest(views.html.error(messages))
     } else {
-      val cArr = cStr.replaceAll("\\s+", "").split(",")
-      val xStr = cArr(0)
-      if (cArr.length != 2) {
-        messages += "The center " + cStr + " seems to have " + cArr.length.toString + " coordinate(s) instead of 2."
-        BadRequest(views.html.error(messages.toArray))
-      } else {
-        var x = 0.0
-        try {
-          x = xStr.toDouble
-        } catch {
-          case e: NumberFormatException => messages += error0 + xStr + errorNumber
-        }
-        val yStr = cArr(1)
-        var y = 0.0
-        try {
-          y = yStr.toDouble
-        } catch {
-          case e: NumberFormatException => messages += error0 + yStr + errorNumber
-        }
-        if (!messages.isEmpty) {
-          BadRequest(views.html.error(messages.toArray))
-        } else {
-          Ok(views.html.results(new Grid(
-            400.0,
-            nxOverTwo,
-            maxIter,
-            mag,
-            new Complex(x, y),
-          )))
-        }
-      }
+      Ok(views.html.results(new Grid(
+        400.0,
+        url.nxOverTwo,
+        url.maxIter,
+        url.mag,
+        new Complex(url.x, url.y),
+      )))
     }
   }
 
