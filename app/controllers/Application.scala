@@ -186,18 +186,20 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
-      Ok(Json.toJson(Map("rows" -> (new Grid(
+      val rows = (new Grid(
         400.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      )).rows)))
+      )).rows(row => row.map(z => s"""{
+        "x":$x,
+        "y":$y,
+        "magSq": $magSq,
+        "iterNo": $iterNo,
+      }"""))
+      Ok(Json.toJson(Map("rows" -> rows)))
     }
-
-
-    val data = Map("name" -> "Alice", "age" -> 30)
-    Ok(Json.toJson(data))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
