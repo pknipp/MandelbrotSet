@@ -186,13 +186,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
-      Ok(Json.toJson(Map("grid" -> new Grid(
+      Ok(Json.toJson(Map("rows" -> (new Grid(
         400.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      ))))
+      )).rows)))
     }
 
 
