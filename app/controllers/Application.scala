@@ -107,6 +107,53 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
 }
 
 class Url(val nxOverTwoStr: String, val maxIterStr: String, val magStr: String, val cStr: String) {
+  var nxOverTwo = 0
+  var maxIter = 0
+  var mag = 0
+  var x = 0.0
+  var y = 0.0
+  private val error0 = "The url fragment "
+  private val error1 = " cannot be parsed as "
+  private val errorInteger = error1 + " an integer."
+  private val errorNumber = error1 + " a number."
+  private var messages: ArrayBuffer[String] = ArrayBuffer()
+  def getMessages(): Array[String] = {
+    try {
+      nxOverTwo = nxOverTwoStr.toInt
+    } catch {
+      case e: NumberFormatException => messages += error0 + nxOverTwoStr + errorInteger
+    }
+    try {
+      maxIter = maxIterStr.toInt
+    } catch {
+      case e: NumberFormatException => messages += error0 + maxIterStr + errorInteger
+    }
+    try {
+      mag = magStr.toInt
+    } catch {
+      case e: NumberFormatException => messages += error0 + magStr + errorInteger
+    }
+    if (messages.isEmpty) {
+      val cArr = cStr.replaceAll("\\s+", "").split(",")
+      val xStr = cArr(0)
+      if (cArr.length != 2) {
+        messages += "The center " + cStr + " seems to have " + cArr.length.toString + " coordinate(s) instead of 2."
+      } else {
+        try {
+          x = xStr.toDouble
+        } catch {
+          case e: NumberFormatException => messages += error0 + xStr + errorNumber
+        }
+        val yStr = cArr(1)
+        try {
+          y = yStr.toDouble
+        } catch {
+          case e: NumberFormatException => messages += error0 + yStr + errorNumber
+        }
+      }
+    }
+    messages.toArray
+  }
 }
 
 @Singleton
