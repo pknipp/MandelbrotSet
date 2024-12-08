@@ -4,6 +4,7 @@ import javax.inject._
 import play.api._
 import play.api.db.Database
 import play.api.mvc._
+import play.api.libs.json._
 import scala.math._
 import scala.collection.mutable.ArrayBuffer
 
@@ -177,6 +178,26 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         new Complex(url.x, url.y),
       )))
     }
+  }
+
+  def jsonResults(nxOverTwoStr: String, maxIterStr: String, magStr: String, cStr: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val url = new Url(nxOverTwoStr, maxIterStr, magStr, cStr)
+    val messages = url.getMessages()
+    if (!messages.isEmpty) {
+      BadRequest(Json.toJson(Map("errors" -> messages)))
+    } else {
+      Ok(Json.toJson(Map("grid" -> new Grid(
+        400.0,
+        url.nxOverTwo,
+        url.maxIter,
+        url.mag,
+        new Complex(url.x, url.y),
+      ))))
+    }
+
+
+    val data = Map("name" -> "Alice", "age" -> 30)
+    Ok(Json.toJson(data))
   }
 
   def db(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>

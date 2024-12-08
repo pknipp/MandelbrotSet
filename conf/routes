@@ -5,6 +5,7 @@
 
 GET     /                           controllers.Application.index()
 GET     /:nxOverTwo/:maxIter/:mag/:c controllers.Application.results(nxOverTwo, maxIter, mag, c)
+GET     /json/:nxOverTwo/:maxIter/:mag/:c controllers.Application.jsonResults(nxOverTwo, maxIter, mag, c)
 GET     /database                   controllers.Application.db()
 
 # Map static resources from the /public folder to the /assets URL path
