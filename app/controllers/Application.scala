@@ -106,6 +106,9 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
   }
 }
 
+class Url(val nxOverTwoStr: String, val maxIterStr: String, val magStr: String, val cStr: String) {
+}
+
 @Singleton
 class Application @Inject()(val controllerComponents: ControllerComponents, val database: Database) extends BaseController {
 
