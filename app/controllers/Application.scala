@@ -202,7 +202,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         url.mag,
         new Complex(url.x, url.y),
       )).rows.map(row => row.map(z => {
-        case class Complex(x: Double, y: Double, magSq: Int, iterNo: Int)
+        case class Complex(x: Double, y: Double, magSq: Double, iterNo: Int)
         Complex(z.x, z.y, z.magSq, z.iterNo)
       }))
       Ok(Json.toJson(Map("rows" -> rows)))
