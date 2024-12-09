@@ -161,13 +161,11 @@ class Url(val nxOverTwoStr: String, val maxIterStr: String, val magStr: String, 
 class Application @Inject()(val controllerComponents: ControllerComponents, val database: Database) extends BaseController {
 
   implicit val complexWrites = new Writes[Complex] {
-    val color = c.color(url.maxIter)
     def writes(c: Complex): JsValue = Json.obj(
       "x": c.x,
       "y": c.y,
       "magSq": c.magSq,
       "iterNo": c.iterNo,
-      "color": color,
     )
   }
 
