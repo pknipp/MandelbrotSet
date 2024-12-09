@@ -201,11 +201,22 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      )).rows.map(row => row.map(z => {
-        case class Complex(x: Double, y: Double, magSq: Double, iterNo: Int)
-        Complex(z.x, z.y, z.magSq, z.iterNo)
-      }))
-      Ok(Json.toJson(Map("rows" -> rows)))
+      )).rows
+        // case class Complex(x: Double, y: Double, magSq: Double, iterNo: Int)
+        // Complex(z.x, z.y, z.magSq, z.iterNo)
+      // }))
+
+      val rowsJson = Json.obj(
+        "rows" -> Json.arr(rows.map(row => Json.arr(row.map(z => {
+          Json.obj(
+            "x" -> z.x,
+            "y" -> z.y,
+            "magSq" -> z.magSq,
+            "iterNo" -> z.iterNo,
+          )
+        }))))
+      )
+      Ok(Json.toJson(Map("rows" -> rowsJson)))
     }
   }
 
