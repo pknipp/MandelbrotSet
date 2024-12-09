@@ -195,14 +195,16 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
-      case class Complex(x: Double, y: Double, magSq: Int, iterNo: Int)
       val rows = (new Grid(
         400.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      )).rows.map(row => row.map(z => Complex(z.x, z.y, z.magSq, z.iterNo)))
+      )).rows.map(row => row.map(z => {
+        case class Complex(x: Double, y: Double, magSq: Int, iterNo: Int)
+        Complex(z.x, z.y, z.magSq, z.iterNo)
+      }))
       Ok(Json.toJson(Map("rows" -> rows)))
     }
   }
