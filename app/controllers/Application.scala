@@ -168,7 +168,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       "iterNo": c.iterNo,
       "color": c.color(url.maxIter),
     )
-}
+  }
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
