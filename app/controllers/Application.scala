@@ -200,7 +200,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         "magSq" -> z.magSq,
         "iterNo" -> z.iterNo,
         "color" -> z.color(url.maxIter),
-      )))))
+      ))))))
     }
   }
 
