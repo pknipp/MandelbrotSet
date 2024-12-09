@@ -192,11 +192,12 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      )).rows(row => row.map(z => s"""{
+      )).rows(row: Array[Complex] => row.map(z => s"""{
         "x":$x,
         "y":$y,
         "magSq": $magSq,
         "iterNo": $iterNo,
+        "color": "$z.color(url.maxIter)",
       }"""))
       Ok(Json.toJson(Map("rows" -> rows)))
     }
