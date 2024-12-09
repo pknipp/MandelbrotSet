@@ -169,8 +169,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     // )
   // }
 
-  case class Complex(x: Double, y: Double, magSq: Int, iterNo: Int)
-
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
@@ -197,6 +195,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
+      case class Complex(x: Double, y: Double, magSq: Int, iterNo: Int)
       val rows = (new Grid(
         400.0,
         url.nxOverTwo,
