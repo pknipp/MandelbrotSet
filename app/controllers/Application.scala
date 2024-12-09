@@ -160,6 +160,16 @@ class Url(val nxOverTwoStr: String, val maxIterStr: String, val magStr: String, 
 @Singleton
 class Application @Inject()(val controllerComponents: ControllerComponents, val database: Database) extends BaseController {
 
+  implicit val complexWrites = new Writes[Complex] {
+    def writes(c: Complex): JsValue = Json.obj(
+      "x": c.x,
+      "y": c.y,
+      "magSq": c.magSq,
+      "iterNo": c.iterNo,
+      "color": c.color(url.maxIter),
+    )
+}
+
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
@@ -192,14 +202,9 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      )).rows.map(row => row.map(z => s"""{
-        "x": $z.x,
-        "y": $z.y,
-        "magSq": $z.magSq,
-        "iterNo": $z.iterNo,
-        "color": "$z.color(url.maxIter)",
-      }"""))
-      Ok(Json.toJson(Map("rows" -> rows)))
+      )).rows
+      val rowsJson = rows.map(_.map(Json.toJson(_)))
+      Ok(Json.toJson(Map("rows" -> rowsJson)))
     }
   }
 
