@@ -194,15 +194,13 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         new Complex(url.x, url.y),
       )).rows
 
-      Ok(Json.obj("rows" -> Json.arr(rows.map(row => Json.arr(row.map(z => Json.obj(
+      Ok(Json.obj("rows" -> Json.arr(rows.map(_.map(z => Json.obj(
         "x" -> z.x,
         "y" -> z.y,
         "magSq" -> z.magSq,
         "iterNo" -> z.iterNo,
         "color" -> z.color(url.maxIter),
-      )))))))
-      // Ok(rowsJson)
-      // Ok(Json.toJson(Map("rows" -> rowsJson)))
+      )))))
     }
   }
 
