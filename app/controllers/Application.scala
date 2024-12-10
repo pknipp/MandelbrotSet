@@ -174,7 +174,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       BadRequest(views.html.error(messages))
     } else {
       Ok(views.html.results(new Grid(
-        400.0,
+        350.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
