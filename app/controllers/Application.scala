@@ -11,19 +11,17 @@ import scala.collection.mutable.ArrayBuffer
 class Complex(val x: Double, val y: Double) {
   val magSq = x * x + y * y
   var iterNo: Int = 0
-  def setIterNo(newIterNo: Int): Unit = {
-    iterNo = newIterNo
-  }
+  var hasEscaped: Boolean = false
   def add(second: Complex): Complex = {
     val z = new Complex(x + second.x, y + second.y)
-    z.setIterNo(iterNo)
+    z.iterNo = iterNo
     z
   }
   def mul(second: Complex): Complex = {
     val xb = second.x
     val yb = second.y
     val z = new Complex(x * xb - y * yb, x * yb + y * xb)
-    z.setIterNo(iterNo)
+    z.iterNo = iterNo
     z
   }
   def iter(second: Complex): Complex = {
@@ -78,7 +76,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
-        z.setIterNo(z.calcIterNo(maxIter))
+        z.iterNo = z.calcIterNo(maxIter)
         row += toDom(z)
         ix += 2
       }
