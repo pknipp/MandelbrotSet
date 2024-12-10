@@ -196,13 +196,14 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       Ok(Json.obj("rows" -> rows.map(_.map(z => {
         val zNonDom = grid.fromDom(z)
         Json.obj(
-        "x" -> zNonDom.x,
-        "y" -> zNonDom.y,
-        "magSq" -> zNonDom.magSq,
-        "iterNo" -> z.iterNo,
-        "color" -> z.color(url.maxIter, z.hasEscaped),
-        "hasEscaped" -> z.hasEscaped,
-      ))})))
+          "x" -> zNonDom.x,
+          "y" -> zNonDom.y,
+          "magSq" -> zNonDom.magSq,
+          "iterNo" -> z.iterNo,
+          "color" -> z.color(url.maxIter, z.hasEscaped),
+          "hasEscaped" -> z.hasEscaped,
+        )
+      }))))
     }
   }
 
