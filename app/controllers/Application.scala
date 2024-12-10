@@ -15,6 +15,7 @@ class Complex(val x: Double, val y: Double) {
   def add(second: Complex): Complex = {
     val z = new Complex(x + second.x, y + second.y)
     z.iterNo = iterNo
+    z.hasEscaped = hasEscaped
     z
   }
   def mul(second: Complex): Complex = {
@@ -22,6 +23,7 @@ class Complex(val x: Double, val y: Double) {
     val yb = second.y
     val z = new Complex(x * xb - y * yb, x * yb + y * xb)
     z.iterNo = iterNo
+    z.hasEscaped = hasEscaped
     z
   }
   def iter(second: Complex): Complex = {
