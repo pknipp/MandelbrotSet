@@ -32,11 +32,8 @@ class Complex(val x: Double, val y: Double) {
   def calcIterNo(maxIter: Int): Int = {
     var n = 0
     var z = new Complex(0, 0)
-    while (n < maxIter) {
-      if (z.magSq >= 4) {
-        hasEscaped = true
-        break
-      }
+    while (!(n >= maxIter || hasEscaped)) {
+      if (z.magSq >= 4) hasEscaped = true
       z = iter(z)
       n += 1
     }
