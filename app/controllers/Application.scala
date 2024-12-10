@@ -40,7 +40,7 @@ class Complex(val x: Double, val y: Double) {
     n
   }
   def color(maxIterNo: Int, hasEscaped: Boolean): String = {
-    if (hasEscaped) {
+    if (!hasEscaped) {
       "#000000"
     } else {
       val n = floor(255 * iterNo / maxIterNo).toInt
@@ -199,6 +199,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         "magSq" -> z.magSq,
         "iterNo" -> z.iterNo,
         "color" -> z.color(url.maxIter, z.hasEscaped),
+        "hasEscaped" -> z.hasEscaped,
       )))))
     }
   }
