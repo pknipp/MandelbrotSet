@@ -77,7 +77,9 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
-        (z.iterNo, z.hasEscaped) = z.calcIterNo(maxIter)
+        val result = z.calcIterNo(maxIter)
+        z.iterNo = result._1
+        z.hasEscaped = result._2
         row += toDom(z)
         ix += 2
       }
