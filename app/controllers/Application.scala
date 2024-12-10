@@ -29,15 +29,15 @@ class Complex(val x: Double, val y: Double) {
     val yNew = (second.x + second.x) * second.y + y
     new Complex(xNew, yNew)
   }
-  def calcIterNo(maxIter: Int): Int = {
-    var n = 0
+  def calcIterNo(maxIter: Int): (Int, Boolean) = {
+    var (n, hasEscaped) = (0, false)
     var z = new Complex(0, 0)
     while (!(n >= maxIter || hasEscaped)) {
       if (z.magSq >= 4) hasEscaped = true
       z = iter(z)
       n += 1
     }
-    n
+    (n, hasEscaped)
   }
   def color(maxIterNo: Int, hasEscaped: Boolean): String = {
     if (!hasEscaped) {
@@ -77,7 +77,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
-        z.iterNo = z.calcIterNo(maxIter)
+        (z.iterNo, z.hasEscaped) = z.calcIterNo(maxIter)
         row += toDom(z)
         ix += 2
       }
