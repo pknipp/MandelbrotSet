@@ -37,10 +37,10 @@ class Complex(val x: Double, val y: Double) {
       z = iter(z)
       n += 1
     }
-    if (n == maxIter) 0 else n
+    n
   }
-  def color(maxIterNo: Int): String = {
-    if (iterNo == 0) {
+  def color(maxIterNo: Int, hasEscaped: Boolean): String = {
+    if (hasEscaped) {
       "#000000"
     } else {
       val n = floor(255 * iterNo / maxIterNo).toInt
