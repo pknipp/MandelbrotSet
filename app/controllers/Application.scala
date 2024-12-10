@@ -185,15 +185,15 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
-      val rows = (new Grid(
+      val grid = (new Grid(
         400.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
         new Complex(url.x, url.y),
-      )).rows
+      ))
 
-      Ok(Json.obj("rows" -> rows.map(_.map(z => {
+      Ok(Json.obj("rows" -> grid.rows.map(_.map(z => {
         val zNonDom = grid.fromDom(z)
         Json.obj(
           "x" -> zNonDom.x,
