@@ -174,7 +174,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       BadRequest(views.html.error(messages))
     } else {
       Ok(views.html.results(new Grid(
-        350.0,
+        340.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
@@ -190,7 +190,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
       val grid = (new Grid(
-        400.0,
+        340.0,
         url.nxOverTwo,
         url.maxIter,
         url.mag,
