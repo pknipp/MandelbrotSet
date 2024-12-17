@@ -71,7 +71,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
       val row: ArrayBuffer[Complex] = ArrayBuffer()
       val isEven = iy % 2 == 0
       var y = iy * dy
-      var nx = floor(sqrt(4.0 / pow(2, 2 * mag).toDouble - y * y) / dx).toInt
+      var nx = floor(sqrt(4.0 / pow(2, 2 * mag).toDouble - 0 * y * y) / dx).toInt
       y += c.y
       if ((nx % 2 == 0) != isEven) nx -= 1
       var ix = -nx
