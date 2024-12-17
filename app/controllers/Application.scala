@@ -57,6 +57,18 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
   val mag2 = {
     pow(2, mag)
   }
+  val xMin = {
+    val number = c.x - 2.0 / mag2
+    f"$number%.5f"
+  val xMax = {
+    val number = c.x + 2.0 / mag2
+    f"$number%.5f"
+  val yMin = {
+    val number = c.y - 2.0 / mag2
+    f"$number%.5f"
+  val yMax = {
+    val number = c.y + 2.0 / mag2
+    f"$number%.5f"
   val rows = {
     var dxTimesTwo = 2.0 / nxOverTwo
     var dy = dxTimesTwo * sqrt(3) / 2

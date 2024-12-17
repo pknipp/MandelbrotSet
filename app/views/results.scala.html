@@ -42,10 +42,10 @@
           </tr>
           <tr>
             <td rowspan="2">boundaries of viewing square</td>
-            <td colspan="2">@(grid.c.x - 2.0 / grid.mag2) < <i>x</i> < @(grid.c.x + 2.0 / grid.mag2)</td>
+            <td colspan="2">@grid.xMin < <i>x</i> < @grid.xMax</td>
           </tr>
           <tr>
-            <td colspan="2">@(grid.c.y - 2.0 / grid.mag2) < <i>y</i> < @(grid.c.y + 2.0 / grid.mag2)</td>
+            <td colspan="2">@grid.yMax < <i>y</i> < @grid.yMax</td>
           </tr>
         </tbody>
       </table>
