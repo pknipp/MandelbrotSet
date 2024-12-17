@@ -40,12 +40,12 @@
               Click spot on figure to zoom 2x.
             </td>
           </tr>
-          <tr rowspan="2">
-            <td>boundaries of viewing square</td>
-            <td>@(grid.c.x - 2.0 / grid.mag2) < <i>x</i> < @(grid.c.x + 2.0 / grid.mag2)</td>
+          <tr>
+            <td rowspan="2">boundaries of viewing square</td>
+            <td colspan="2">@(grid.c.x - 2.0 / grid.mag2) < <i>x</i> < @(grid.c.x + 2.0 / grid.mag2)</td>
           </tr>
           <tr>
-            <td>@(grid.c.y - 2.0 / grid.mag2) < <i>y</i> < @(grid.c.y + 2.0 / grid.mag2)</td>
+            <td colspan="2">@(grid.c.y - 2.0 / grid.mag2) < <i>y</i> < @(grid.c.y + 2.0 / grid.mag2)</td>
           </tr>
         </tbody>
       </table>
