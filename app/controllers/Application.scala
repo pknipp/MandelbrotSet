@@ -8,10 +8,11 @@ import play.api.libs.json._
 import scala.math._
 import scala.collection.mutable.ArrayBuffer
 
-class Complex(val x: Double, val y: Double) {
+class Complex(val x: Double, val y: Double) { // val neighbors: Array[(Int, Int)]
   val magSq = x * x + y * y
   var iterNo: Int = 0
   var hasEscaped: Boolean = false
+  var mayEscape: Boolean = false
   def add(second: Complex): Complex = {
     val z = new Complex(x + second.x, y + second.y)
     z.iterNo = iterNo
@@ -95,6 +96,7 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
+        // put following three lines into a dedicated method: setIterNo(maxIter)
         val result = z.calcIterNo(maxIter)
         z.iterNo = result._1
         z.hasEscaped = result._2
