@@ -54,7 +54,14 @@ class Complex(val x: Double, val y: Double) { // val neighbors: Array[(Int, Int)
   }
 }
 
-class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int, val c: Complex) {
+class Grid(
+  val size: Double,
+  val nxOverTwo: Int,
+  val maxIter: Int,
+  val mag: Int,
+  val c: Complex,
+)
+{
   val mag2 = {
     pow(2, mag)
   }
@@ -97,9 +104,9 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
         val x = ix * dx + c.x
         var z = new Complex(x, y)
         // put following three lines into a dedicated method: setIterNo(maxIter)
-        val result = z.calcIterNo(maxIter)
-        z.iterNo = result._1
-        z.hasEscaped = result._2
+        // val result = z.calcIterNo(maxIter)
+        // z.iterNo = result._1
+        // z.hasEscaped = result._2
         row += toDom(z)
         ix += 2
       }
@@ -111,14 +118,25 @@ class Grid(val size: Double, val nxOverTwo: Int, val maxIter: Int, val mag: Int,
   val numberOfCells = {
     rows.map(_.length).sum
   }
-  val maxIterNo = {
-    var maxIterNo = 0
+  var maxIterNo = 0
+  // val maxIterNo = {
+    // var maxIterNo = 0
+    // for (row <- rows) {
+      // for (point <- row) {
+        // if (maxIterNo < point.iterNo) maxIterNo = point.iterNo
+      // }
+    // }
+    // maxIterNo
+  // }
+  def setIterNo(maxIter: Int) = {
     for (row <- rows) {
-      for (point <- row) {
-        if (maxIterNo < point.iterNo) maxIterNo = point.iterNo
+      for (z <- row) {
+        val result = z.calcIterNo(maxIter)
+        z.iterNo = result._1
+        z.hasEscaped = result._2
+        if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
       }
     }
-    maxIterNo
   }
   def toDom(z: Complex): Complex = {
     z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
