@@ -220,7 +220,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         url.mag,
         new Complex(url.x, url.y),
       )
-      grid.setIterNo(grid.maxIterNo)
+      grid.setIterNo(grid.maxIter)
       Ok(views.html.results(grid))
         // new Grid(
         // 340.0,
