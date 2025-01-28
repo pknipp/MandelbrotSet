@@ -131,9 +131,11 @@ class Grid(
     // maxIterNo
   // }
   def setIterNo(maxIter: Int) = {
+    println("top of setIterNo")
     for (row <- rows) {
       for (z <- row) {
         val result = z.calcIterNo(maxIter)
+        println(result)
         z.iterNo = result._1
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
