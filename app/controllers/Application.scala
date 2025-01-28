@@ -113,6 +113,7 @@ class Grid(
       rows += row.toArray
       iy += 1
     }
+    setIterNo(maxIter)
     rows.toArray
   }
   val numberOfCells = {
