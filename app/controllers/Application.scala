@@ -7,8 +7,10 @@ import play.api.mvc._
 import play.api.libs.json._
 import scala.math._
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable
 
 class Complex(val x: Double, val y: Double) { // val neighbors: Array[(Int, Int)]
+  val neighbors: mutable.Set[Complex] = mutable.Set.empty[Complex]
   val magSq = x * x + y * y
   var iterNo: Int = 0
   var hasEscaped: Boolean = false
@@ -62,6 +64,7 @@ class Grid(
   val c: Complex,
 )
 {
+  var numberThatMayEscape = 0
   val mag2 = {
     pow(2, mag)
   }
