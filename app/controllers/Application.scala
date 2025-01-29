@@ -120,6 +120,11 @@ class Grid(
   var maxIterNo = 0
 
   def setIterNo(maxIter: Int) = {
+    for ((row, i) <- rows.zipWithIndex) {
+      for ((z, j) <- row.zipWithIndex) {
+        println(i, j)
+      }
+    }
     for (row <- rows) {
       for (z <- row) {
         val result = fromDom(z).calcIterNo(maxIter)
