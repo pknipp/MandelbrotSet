@@ -103,39 +103,23 @@ class Grid(
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
-        // put following three lines into a dedicated method: setIterNo(maxIter)
-        // val result = z.calcIterNo(maxIter)
-        // z.iterNo = result._1
-        // z.hasEscaped = result._2
         row += toDom(z)
         ix += 2
       }
       rows += row.toArray
       iy += 1
     }
-    // Removed in order to remove recursion.
-    // setIterNo(maxIter)
     rows.toArray
   }
   val numberOfCells = {
     rows.map(_.length).sum
   }
   var maxIterNo = 0
-  // val maxIterNo = {
-    // var maxIterNo = 0
-    // for (row <- rows) {
-      // for (point <- row) {
-        // if (maxIterNo < point.iterNo) maxIterNo = point.iterNo
-      // }
-    // }
-    // maxIterNo
-  // }
+
   def setIterNo(maxIter: Int) = {
-    println("top of setIterNo")
     for (row <- rows) {
       for (z <- row) {
         val result = fromDom(z).calcIterNo(maxIter)
-        println(result)
         z.iterNo = result._1
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
@@ -222,13 +206,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
       )
       grid.setIterNo(grid.maxIter)
       Ok(views.html.results(grid))
-        // new Grid(
-        // 340.0,
-        // url.nxOverTwo,
-        // url.maxIter,
-        // url.mag,
-        // new Complex(url.x, url.y),
-      // )))
     }
   }
 
@@ -238,6 +215,8 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
+      // Even those following is in px rather than arbs, this
+      // is undone immediately by invocation of fromDom.
       val grid = (new Grid(
         340.0,
         url.nxOverTwo,
@@ -245,7 +224,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         url.mag,
         new Complex(url.x, url.y),
       ))
-
       Ok(Json.obj("rows" -> grid.rows.map(_.map(z => {
         val zNonDom = grid.fromDom(z)
         Json.obj(
