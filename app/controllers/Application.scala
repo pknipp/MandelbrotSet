@@ -134,7 +134,7 @@ class Grid(
     println("top of setIterNo")
     for (row <- rows) {
       for (z <- row) {
-        val result = z.calcIterNo(maxIter)
+        val result = fromDom(z).calcIterNo(maxIter)
         println(result)
         z.iterNo = result._1
         z.hasEscaped = result._2
