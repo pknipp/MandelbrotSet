@@ -64,7 +64,7 @@ class Grid(
   val c: Complex,
 )
 {
-  val potentialEscapees: mutable.Set[Complex] = mutable.Set.empty[Complex]
+  val potentialEscapers: mutable.Set[Complex] = mutable.Set.empty[Complex]
   val mag2 = {
     pow(2, mag)
   }
@@ -106,7 +106,7 @@ class Grid(
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
-        if (iy == -ny || iy == ny || ix == -nx || ix == nx) potentialEscapees += z
+        if (iy == -ny || iy == ny || ix == -nx || ix == nx) potentialEscapers += z
         row += toDom(z)
         ix += 2
       }
