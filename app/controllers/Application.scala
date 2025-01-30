@@ -120,12 +120,12 @@ class Grid(
         if (i > 0) {
           z.neighbors += rows(i - 1)(j)
           val otherJ = j + (if (row.length < rows(i - 1).length) 1 else 0)
-          z.neighbors += rows(i - 1)(otherJ)
+          if (otherJ < rows(i - 1).length) z.neighbors += rows(i - 1)(otherJ)
         }
         if (i < rows.length - 1) {
           z.neighbors += rows(i + 1)(j)
           val otherJ = j + (if (row.length < rows(i + 1).length) 1 else 0)
-          z.neighbors += rows(i + 1)(otherJ)
+          if (otherJ < rows(i + 1).length) z.neighbors += rows(i + 1)(otherJ)
         }
       }
     }
