@@ -100,7 +100,7 @@ class Grid(
       val isEven = iy % 2 == 0
       var y = iy * dy
       y += c.y
-      val nx = nx0 - (if ((nx % 2 == 0) != isEven) 1 else 0)
+      val nx = nx0 - (if ((nx0 % 2 == 0) != isEven) 1 else 0)
       var ix = -nx
       while (ix <= nx) {
         numCells += 1
