@@ -146,6 +146,7 @@ class Grid(
       for (z <- potentialEscapers) {
         println("top of outside for")
         val result = fromDom(z).calcIterNo(maxIter)
+        println("result: ", result)
         potentialEscapers -= z
         z.iterNo = result._1
         z.hasEscaped = result._2
