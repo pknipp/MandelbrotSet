@@ -91,6 +91,7 @@ class Grid(
     var iy = -ny
     dxTimesTwo /= pow(2, mag).toDouble
     val dx = dxTimesTwo / 2
+    val nx0 = floor(2.0 / pow(2, mag) / dx).toInt
     dy /= pow(2, mag).toDouble
     val rows: ArrayBuffer[Array[Complex]] = ArrayBuffer()
     var numCells = 0
@@ -98,9 +99,8 @@ class Grid(
       val row: ArrayBuffer[Complex] = ArrayBuffer()
       val isEven = iy % 2 == 0
       var y = iy * dy
-      var nx = floor(2.0 / pow(2, mag) / dx).toInt
       y += c.y
-      if ((nx % 2 == 0) != isEven) nx -= 1
+      val nx = nx0 - (if ((nx % 2 == 0) != isEven) 1 else 0)
       var ix = -nx
       while (ix <= nx) {
         numCells += 1
@@ -113,6 +113,7 @@ class Grid(
       rows += row.toArray
       iy += 1
     }
+
     rows.toArray
   }
   val numberOfCells = {
