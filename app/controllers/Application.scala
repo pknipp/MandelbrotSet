@@ -141,19 +141,29 @@ class Grid(
   var maxIterNo = 0
 
   def setIterNo(maxIter: Int) = {
-    for ((row, i) <- rows.zipWithIndex) {
-      for ((z, j) <- row.zipWithIndex) {
-        println(i, j)
-      }
-    }
-    for (row <- rows) {
-      for (z <- row) {
-        val result = fromDom(z).calcIterNo(maxIter)
+    while (potentialEscapers.size > 0) {
+      for (z <- potentialEscapers) {
+        val result = fromDom(potentialEscaper)
+        potentialEscapers -= z
         z.iterNo = result._1
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
+        if (z.hasEscaped) {
+          for (zNn <- z.neighbors) {
+            if (!zNn.hasEscaped) potentialEscapers += zNn
+          }
+        }
       }
     }
+
+    // for (row <- rows) {
+      // for (z <- row) {
+        // val result = fromDom(z).calcIterNo(maxIter)
+        // z.iterNo = result._1
+        // z.hasEscaped = result._2
+        // if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
+      // }
+    // }
   }
   def toDom(z: Complex): Complex = {
     z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
