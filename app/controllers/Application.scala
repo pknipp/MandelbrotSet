@@ -119,13 +119,17 @@ class Grid(
         if (j < row.length - 1) z.neighbors += row(j + 1)
         if (i > 0) {
           if (j < rows(i - 1).length) z.neighbors += rows(i - 1)(j)
-          val otherJ = j + (if (row.length < rows(i - 1).length) 1 else 0)
-          if (otherJ < rows(i - 1).length) z.neighbors += rows(i - 1)(otherJ)
+          val otherJ = j + (if (row.length < rows(i - 1).length) 1 else -1)
+          if (otherJ < rows(i - 1).length && otherJ >= 0) {
+            z.neighbors += rows(i - 1)(otherJ)
+          }
         }
         if (i < rows.length - 1) {
           if (j < rows(i + 1).length) z.neighbors += rows(i + 1)(j)
-          val otherJ = j + (if (row.length < rows(i + 1).length) 1 else 0)
-          if (otherJ < rows(i + 1).length) z.neighbors += rows(i + 1)(otherJ)
+          val otherJ = j + (if (row.length < rows(i + 1).length) 1 else -1)
+          if (otherJ < rows(i + 1).length && otherJ >= 0) {
+            z.neighbors += rows(i + 1)(otherJ)
+          }
         }
       }
     }
