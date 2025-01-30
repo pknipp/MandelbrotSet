@@ -77,6 +77,7 @@
                   x=@(grid.fromDom(point).x)
                   y=@(grid.fromDom(point).y)
                   iter=@(point.iterNo)
+                  nn=@(point.neighbors.size)
                 />
               </g>
             }
@@ -95,10 +96,10 @@
           // Calculate the position of the tooltip relative to the mouse cursor
           tooltip.style.left = (event.clientX + 10) + "px";
           tooltip.style.top = (event.clientY - 10) + "px";
-          const [x, y, iter] = ["x", "y", "iter"].map(
+          const [x, y, iter, nn] = ["x", "y", "iter", "nn"].map(
             str => Number(pathEl.getAttribute(str)),
           );
-          tooltip.textContent = `z: (${x.toFixed(5)}, ${y.toFixed(5)}) \nNumber of iterations: ${Number(iter) || @grid.maxIter}`;
+          tooltip.textContent = `z: (${x.toFixed(5)}, ${y.toFixed(5)}) \nNumber of iterations: ${Number(iter) || @grid.maxIter}\nNumber of neighbors: ${nn}`;
           tooltip.style.visibility = "visible";
         });
         pathEl.addEventListener("mouseleave", function() {
