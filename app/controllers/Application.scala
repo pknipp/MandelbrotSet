@@ -113,7 +113,22 @@ class Grid(
       rows += row.toArray
       iy += 1
     }
-
+    for ((row, i) <- rows.zipWithIndex) {
+      for ((z, j) <- row.zipWithIndex) {
+        if (j > 0) z.neighbors += row(j - 1)
+        if (j < row.length - 1) z.neighbors += row(j + 1)
+        if (i > 0) {
+          z.neighbors += rows(i - 1)(j)
+          val otherJ = j + (if (row.length < rows(i - 1).length) 1 else 0)
+          z.neighbors += rows(i - 1)(otherJ)
+        }
+        if (i < rows.length - 1) {
+          z.neighbors += rows(i + 1)(j)
+          val otherJ = j + (if (row.length < rows(i + 1).length) 1 else 0)
+          z.neighbors += rows(i + 1)(otherJ)
+        }
+      }
+    }
     rows.toArray
   }
   val numberOfCells = {
