@@ -142,7 +142,9 @@ class Grid(
 
   def setIterNo(maxIter: Int) = {
     while (potentialEscapers.size > 0) {
+      println("top of outside while")
       for (z <- potentialEscapers) {
+        println("top of outside for")
         val result = fromDom(z).calcIterNo(maxIter)
         potentialEscapers -= z
         z.iterNo = result._1
@@ -150,6 +152,7 @@ class Grid(
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
         if (z.hasEscaped) {
           for (zNn <- z.neighbors) {
+            println("top of for over neighbors")
             if (!zNn.hasEscaped) potentialEscapers += zNn
           }
         }
