@@ -14,7 +14,6 @@ class Complex(val x: Double, val y: Double) { // val neighbors: Array[(Int, Int)
   val magSq = x * x + y * y
   var iterNo: Int = 0
   var hasEscaped: Boolean = false
-  var mayEscape: Boolean = false
   def add(second: Complex): Complex = {
     val z = new Complex(x + second.x, y + second.y)
     z.iterNo = iterNo
@@ -159,6 +158,7 @@ class Grid(
           }
         }
       }
+      print(potentialEscapers)
     }
 
     for (row <- rows) {
