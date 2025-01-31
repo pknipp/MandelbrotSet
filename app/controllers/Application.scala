@@ -140,35 +140,34 @@ class Grid(
   var maxIterNo = 0
 
   def setIterNo(maxIter: Int) = {
+    var newPE: mutable.Set[Complex] = mutable.Set.empty[Complex]
     while (potentialEscapers.size > 0) {
-      println("top of outside while")
+      println("size = ", potentialEscapers.size)
       for (z <- potentialEscapers) {
-        println("top of outside for")
         val result = fromDom(z).calcIterNo(maxIter)
         potentialEscapers -= z
         z.iterNo = result._1
-        println("result: ", result)
-        println("z.iterNo = ", z.iterNo)
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
         if (z.hasEscaped) {
           for (zNn <- z.neighbors) {
             println("top of for over neighbors")
-            if (!zNn.hasEscaped) potentialEscapers += zNn
+            if (!zNn.hasEscaped) newPE += zNn
           }
         }
       }
-      println(rows)
+      potentialEscapers ++= newPE
     }
 
-    for (row <- rows) {
-      for (z <- row) {
-        val result = fromDom(z).calcIterNo(maxIter)
-        z.iterNo = result._1
-        z.hasEscaped = result._2
-        if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
-      }
-    }
+
+    // for (row <- rows) {
+      // for (z <- row) {
+        // val result = fromDom(z).calcIterNo(maxIter)
+        // z.iterNo = result._1
+        // z.hasEscaped = result._2
+        // if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
+      // }
+    // }
   }
   def toDom(z: Complex): Complex = {
     z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
