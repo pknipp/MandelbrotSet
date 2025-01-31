@@ -63,7 +63,7 @@ class Grid(
   val c: Complex,
 )
 {
-  val potentialEscapers: mutable.Set[Complex] = mutable.Set.empty[Complex]
+  var potentialEscapers: mutable.Set[Complex] = mutable.Set.empty[Complex]
   val mag2 = {
     pow(2, mag)
   }
