@@ -158,7 +158,7 @@ class Grid(
           }
         }
       }
-      print(potentialEscapers)
+      println(rows)
     }
 
     for (row <- rows) {
