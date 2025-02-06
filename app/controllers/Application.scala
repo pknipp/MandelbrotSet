@@ -159,7 +159,6 @@ class Grid(
       potentialEscapers = nextPE
     }
 
-
     for (row <- rows) {
       for (z <- row) {
         val result = fromDom(z).calcIterNo(maxIter)
