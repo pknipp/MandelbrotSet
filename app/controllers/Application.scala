@@ -144,8 +144,8 @@ class Grid(
   var maxIterNo = 0
 
   def setIterNo(maxIter: Int) = {
-    var nextPE: mutable.Set[Complex] = mutable.Set.empty[Complex]
     while (potentialEscapers.size > 0) {
+      val nextPE: mutable.Set[Complex] = mutable.Set.empty[Complex]
       println("size = ", potentialEscapers.size)
       for (z <- potentialEscapers) {
         val result = z.calcIterNo(maxIter)
