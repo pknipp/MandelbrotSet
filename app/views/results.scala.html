@@ -134,6 +134,7 @@
       svg.addEventListener("click", e => {
         path.center = ["x", "y"].reduce((c, xy) => {
           c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
+          console.log("c = ", c);
           return c;
         }, {});
         setNewPath(path, "mag");
