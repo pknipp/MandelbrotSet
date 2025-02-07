@@ -108,7 +108,7 @@ class Grid(
         val x = ix * dx + c.x
         var z = new Complex(x, y)
         z.px = (((z.x - c.x) * pow(2, mag).toDouble) + 2) * size / 2
-        z.py = (((z.y - c.y) * pow(2, mag).toDouble) + 2) * size / 2
+        z.py = 2 * size - (((z.y - c.y) * pow(2, mag).toDouble) + 2) * size / 2
         if (iy == -ny || iy == ny || ix == -nx || ix == nx) potentialEscapers += z
         row += z
         ix += 2
