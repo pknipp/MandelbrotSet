@@ -132,9 +132,8 @@
       cellsButton.addEventListener("click", e => setNewPath(path, "nxOverTwo"));
       iterationButton.addEventListener("click", e => setNewPath(path, "maxIter"));
       svg.addEventListener("click", e => {
-        path.center = ["x", "y"].reduce((c, xy) => {
-          c[xy] = path.center[xy] + 2 * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
-          console.log("c = ", c);
+        path.center = ["x", "y"].reduce((c, xy, i) => {
+          c[xy] = path.center[xy] + 2 * (i ? -1 : 1) * (e[`offset${xy.toUpperCase()}`] / @grid.size - 1) / 2 ** path.mag;
           return c;
         }, {});
         setNewPath(path, "mag");
