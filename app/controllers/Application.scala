@@ -153,12 +153,16 @@ class Grid(
         z.iterNo = result._1
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
+      }
+
+      for (z <- potentialEscapers) {
         if (z.hasEscaped) {
           for (zNn <- z.neighbors) {
             if (zNn.iterNo == 0) nextPE += zNn
           }
         }
       }
+
       potentialEscapers = nextPE
     }
 
