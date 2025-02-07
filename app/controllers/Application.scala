@@ -9,7 +9,9 @@ import scala.math._
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable
 
-class Complex(val x: Double, val y: Double) { // val neighbors: Array[(Int, Int)]
+class Complex(val x: Double, val y: Double) {
+  var px: Double = 0
+  var py: Double = 0
   val neighbors: mutable.Set[Complex] = mutable.Set.empty[Complex]
   val magSq = x * x + y * y
   var iterNo: Int = 0
@@ -105,8 +107,15 @@ class Grid(
         numCells += 1
         val x = ix * dx + c.x
         var z = new Complex(x, y)
+        z.px = (((z.x - c.x) * pow(2, mag).toDouble) + 2) * size / 2
+        z.py = (((z.y - c.y) * pow(2, mag).toDouble) + 2) * size / 2
+
+        // def toDom(z: Complex): Complex = {
+          // z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
+        // }
+
         if (iy == -ny || iy == ny || ix == -nx || ix == nx) potentialEscapers += z
-        row += toDom(z)
+        row += z
         ix += 2
       }
       rows += row.toArray
@@ -161,7 +170,7 @@ class Grid(
 
     for (row <- rows) {
       for (z <- row) {
-        val result = fromDom(z).calcIterNo(maxIter)
+        val result = z.calcIterNo(maxIter)
         z.iterNo = result._1
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
@@ -267,7 +276,7 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         new Complex(url.x, url.y),
       ))
       Ok(Json.obj("rows" -> grid.rows.map(_.map(z => {
-        val zNonDom = grid.fromDom(z)
+        val zNonDom = z
         Json.obj(
           "x" -> zNonDom.x,
           "y" -> zNonDom.y,
