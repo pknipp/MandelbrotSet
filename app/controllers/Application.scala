@@ -145,23 +145,22 @@ class Grid(
 
   def setIterNo(maxIter: Int) = {
     var nextPE: mutable.Set[Complex] = mutable.Set.empty[Complex]
-    // while (potentialEscapers.size > 0) {
-      // println("size = ", potentialEscapers.size)
-      // for (z <- potentialEscapers) {
-        // val result = fromDom(z).calcIterNo(maxIter)
-        // potentialEscapers -= z
-        // z.iterNo = result._1
-        // z.hasEscaped = result._2
-        // if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
-        // if (z.hasEscaped) {
-          // for (zNn <- z.neighbors) {
-            // println("top of for over neighbors")
-            // if (zNn.iterNo == 0) nextPE += zNn
-          // }
-        // }
-      // }
-      // potentialEscapers = nextPE
-    // }
+    while (potentialEscapers.size > 0) {
+      println("size = ", potentialEscapers.size)
+      for (z <- potentialEscapers) {
+        val result = z.calcIterNo(maxIter)
+        potentialEscapers -= z
+        z.iterNo = result._1
+        z.hasEscaped = result._2
+        if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
+        if (z.hasEscaped) {
+          for (zNn <- z.neighbors) {
+            if (zNn.iterNo == 0) nextPE += zNn
+          }
+        }
+      }
+      potentialEscapers = nextPE
+    }
 
     for (row <- rows) {
       for (z <- row) {
