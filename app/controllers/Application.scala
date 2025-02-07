@@ -109,11 +109,6 @@ class Grid(
         var z = new Complex(x, y)
         z.px = (((z.x - c.x) * pow(2, mag).toDouble) + 2) * size / 2
         z.py = (((z.y - c.y) * pow(2, mag).toDouble) + 2) * size / 2
-
-        // def toDom(z: Complex): Complex = {
-          // z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
-        // }
-
         if (iy == -ny || iy == ny || ix == -nx || ix == nx) potentialEscapers += z
         row += z
         ix += 2
@@ -176,12 +171,6 @@ class Grid(
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
       }
     }
-  }
-  def toDom(z: Complex): Complex = {
-    z.add(new Complex(-c.x, -c.y)).mul(new Complex(pow(2, mag).toDouble, 0.0)).add(new Complex(2.0, 2.0)).mul(new Complex(size / 2, 0))
-  }
-  def fromDom(z: Complex): Complex = {
-    z.mul(new Complex(2 / size, 0)).add(new Complex(-2.0, -2.0)).mul(new Complex(pow(2, -mag).toDouble, 0.0)).add(new Complex(c.x, c.y))
   }
 }
 
@@ -266,8 +255,6 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
     if (!messages.isEmpty) {
       BadRequest(Json.toJson(Map("errors" -> messages)))
     } else {
-      // Even those following is in px rather than arbs, this
-      // is undone immediately by invocation of fromDom.
       val grid = (new Grid(
         340.0,
         url.nxOverTwo,
@@ -276,11 +263,10 @@ class Application @Inject()(val controllerComponents: ControllerComponents, val 
         new Complex(url.x, url.y),
       ))
       Ok(Json.obj("rows" -> grid.rows.map(_.map(z => {
-        val zNonDom = z
         Json.obj(
-          "x" -> zNonDom.x,
-          "y" -> zNonDom.y,
-          "magSq" -> zNonDom.magSq,
+          "x" -> z.x,
+          "y" -> z.y,
+          "magSq" -> z.magSq,
           "iterNo" -> z.iterNo,
           "color" -> z.color(url.maxIter, z.hasEscaped),
           "hasEscaped" -> z.hasEscaped,
