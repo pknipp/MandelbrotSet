@@ -149,7 +149,7 @@ class Grid(
       println("size = ", potentialEscapers.size)
       for (z <- potentialEscapers) {
         val result = z.calcIterNo(maxIter)
-        potentialEscapers -= z
+        // potentialEscapers -= z
         z.iterNo = result._1
         z.hasEscaped = result._2
         if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
