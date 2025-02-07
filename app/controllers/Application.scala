@@ -162,14 +162,14 @@ class Grid(
       potentialEscapers = nextPE
     }
 
-    for (row <- rows) {
-      for (z <- row) {
-        val result = z.calcIterNo(maxIter)
-        z.iterNo = result._1
-        z.hasEscaped = result._2
-        if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
-      }
-    }
+    // for (row <- rows) {
+      // for (z <- row) {
+        // val result = z.calcIterNo(maxIter)
+        // z.iterNo = result._1
+        // z.hasEscaped = result._2
+        // if (maxIterNo < z.iterNo) maxIterNo = z.iterNo
+      // }
+    // }
   }
 }
 
