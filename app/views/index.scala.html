@@ -40,7 +40,7 @@
       <br>
       <tt>/&langle;resolution&rangle;/&langle;iterations&rangle;/&langle;magnification&rangle;/&langle;center&rangle;</tt>
       <br>
-      in which the four inputs are defined below. That said however, the easier way to control this app is via buttons.  For instance <button id="render-mandelbrot-set">this button</button> sets the url to <tt>...heroku.com/20/40/0/0,0</tt>.
+      in which the four inputs are defined below. That said however, the easier way to control this app is via buttons.  For instance <button id="render-mandelbrot-set">this button</button> sets the url to <tt>...heroku.com/29/40/0/0,0</tt>.
       <table border="1">
         <theader>
           <tr>
@@ -90,7 +90,7 @@
   <script>
     let button = document.getElementById("render-mandelbrot-set");
     const renderSet = () => {
-      window.location.href = "https://mandelbrot-set-810db55074db.herokuapp.com/20/40/0/0,0";
+      window.location.href = "https://mandelbrot-set-810db55074db.herokuapp.com/29/40/0/0,0";
     };
     button.addEventListener("click", e => renderSet());
   </script>
