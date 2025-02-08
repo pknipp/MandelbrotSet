@@ -181,7 +181,7 @@ class Url(val nxOverTwoStr: String, val maxIterStr: String, val magStr: String, 
     } catch {
       case e: NumberFormatException => messages += error0 + nxOverTwoStr + errorInteger
     }
-    if (nxOverTwo > 100) messages += error0 + nxOverTwo + " exceeds 100."
+    if (nxOverTwo > 100) messages += error0 + nxOverTwo + " exceeds 100, so this request would lead to the app crashing because of a memory overrun."
     try {
       maxIter = maxIterStr.toInt
     } catch {
