@@ -19,7 +19,12 @@
             <td>@(if (grid.mag2 > 999999) f"${grid.numberOfCells.toDouble}%.2e"
               else Math.round(grid.numberOfCells))</td>
             <td>
-              <button id="increase-cells" disabled=@(9800 < grid.numberOfCells)></button>>Quadruple</button>
+              <button
+                id="increase-cells"
+                @if(9800 < grid.numberOfCells){ disabled="disabled" }
+              >
+                Quadruple
+              </button>
               this number.
             </td>
           </tr>
